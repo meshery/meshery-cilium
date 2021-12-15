@@ -1,7 +1,28 @@
-# layer5-repo-template
-This repository is used as the boilerplate for consistency across all Layer5 repos.
+<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/assets/images/meshery/meshery-logo-tag-light-text-side.png"  width="70%" /></a><br /><br /></p>
+ 
+# Meshery Adapter for Cilium Service Mesh
+<div align="center">
 
-<div>&nbsp;</div>
+[![Docker Pulls](https://img.shields.io/docker/pulls/layer5/meshery-cilium.svg)](https://hub.docker.com/r/layer5/meshery-cilium)
+[![Go Report Card](https://goreportcard.com/badge/github.com/layer5io/meshery-cilium)](https://goreportcard.com/report/github.com/layer5io/meshery-cilium)
+[![Build Status](https://github.com/meshery/meshery-istio/workflows/Meshery-cilium/badge.svg)](https://github.com/layer5io/meshery-cilium/actions)
+[![GitHub](https://img.shields.io/github/license/layer5io/meshery-istio.svg)](LICENSE)
+[![GitHub issues by-label](https://img.shields.io/github/issues/layer5io/meshery-cilium/help%20wanted.svg)](https://github.com/meshery/meshery-cilium/issues?q=is%3Aopen+is%3Aissue+label%3A"help+wanted")
+[![Website](https://img.shields.io/website/https/layer5.io/meshery.svg)](https://meshery.io)
+[![Twitter Follow](https://img.shields.io/twitter/follow/layer5.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=mesheryio)
+[![Slack](https://img.shields.io/badge/Slack-@layer5.svg?logo=slack)](http://slack.layer5.io)
+[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3564/badge)](https://bestpractices.coreinfrastructure.org/projects/3564)
+
+</div>
+
+<p style="clear:both;">
+<h2><a href="https://layer5.io/meshery">Meshery</a></h2>
+<a href="https://meshery.io"><img src="img/readme/meshery-logo-light-text.svg"
+style="margin:10px;" width="125px" 
+alt="Meshery - the Service Mesh Management Plane" align="left" /></a>
+<a href="https://meshery.io">Meshery</a> is the multi-service mesh management plane offering lifecycle management of more types of service meshes than any other tool available today. Meshery facilitates adopting, configuring, operating and managing performance of different service meshes and incorporates the collection and display of metrics from applications running on top of any service mesh. 
+<br /><br /><p align="center"><i>If you’re using Meshery or if you like the project, please <a href="https://github.com/layer5io/meshery/stargazers">★</a> star this repository to show your support! 🤩</i></p>
+</p>
 
 ## Join the service mesh community!
 
