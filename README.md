@@ -1,4 +1,4 @@
-<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/assets/images/meshery/meshery-logo-tag-light-text-side.png"  width="70%" /></a><br /><br /></p>
+<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src=".github/readme/images/meshery/meshery-logo-tag-light-text-side.svg"  width="70%" /></a><br /><br /></p>
  
 # Meshery Adapter for Cilium Service Mesh
 <div align="center">
@@ -17,7 +17,7 @@
 
 <p style="clear:both;">
 <h2><a href="https://layer5.io/meshery">Meshery</a></h2>
-<a href="https://meshery.io"><img src="img/readme/meshery-logo-light-text.svg"
+<a href="https://meshery.io"><img src=".github/readme/images/meshery/meshery-logo-light.svg"
 style="margin:10px;" width="125px" 
 alt="Meshery - the Service Mesh Management Plane" align="left" /></a>
 <a href="https://meshery.io">Meshery</a> is the multi-service mesh management plane offering lifecycle management of more types of service meshes than any other tool available today. Meshery facilitates adopting, configuring, operating and managing performance of different service meshes and incorporates the collection and display of metrics from applications running on top of any service mesh. 
