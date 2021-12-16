@@ -1,6 +1,5 @@
 <p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src=".github/readme/images/meshery/meshery-logo-tag-light-text-side.svg"  width="70%" /></a><br /><br /></p>
  
-# Meshery Adapter for Cilium Service Mesh
 <div align="center">
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/layer5/meshery-cilium.svg)](https://hub.docker.com/r/layer5/meshery-cilium)
@@ -15,6 +14,18 @@
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3564/badge)](https://bestpractices.coreinfrastructure.org/projects/3564)
 
 </div>
+
+# Meshery Adapter for Cilium Service Mesh
+
+<h2><a href="https://meshery.layer5.io/docs">Cilium Service Mesh</h2>
+<a href="https://cilium.io/">
+ <img src=".github/readme/images/cilium.svg" style="margin:10px;" width="125px" 
+   alt="Cilium logo" align="left" />
+</a>
+<p>
+<a href="https://cilium.io/">Cilium</a> is open source software for providing, securing, and observing network connectivity between container workloads - cloud-native, and fueled by eBPF as Linux kernel technology. Cilium is bringing eBPF strengths to the world of service mesh. Cilium Service Mesh features eBPF-powered connectivity, traffic management, security, and observability.
+ <br /> <br /> 
+</p>
 
 <p style="clear:both;">
 <h2><a href="https://layer5.io/meshery">Meshery</a></h2>
@@ -39,6 +50,7 @@ Become a <b>Meshtee</b> today!</p>
 
 Find out more on the <a href="https://layer5.io/community">Layer5 community</a>. <br />
 <br /><br /><br /><br />
+
 </p>
 
 <div>&nbsp;</div>
@@ -56,3 +68,17 @@ Find out more on the <a href="https://layer5.io/community">Layer5 community</a>.
 </p>
 <p align="center">
 <i>Not sure where to start?</i> Grab an open issue with the <a href="https://github.com/issues?q=is%3Aopen+is%3Aissue+archived%3Afalse+org%3Alayer5io+org%3Ameshery+org%3Aservice-mesh-performance+org%3Aservice-mesh-patterns+label%3A%22help+wanted%22+">help-wanted label</a>.</p>
+
+## About Layer5
+
+**Community First**
+
+<p>The <a href="https://layer5.io">Layer5</a> community represents the largest collection of service mesh projects and their maintainers in the world.</p>
+
+**Open Source First**
+
+<p>We build projects to provide learning environments, deployment and operational best practices, performance benchmarks, create documentation, share networking opportunities, and more. Our shared commitment to the open source spirit pushes Layer5 projects forward.</p>
+
+**License**
+
+This repository and site are available as open source under the terms of the [Apache 2.0 License](https://opensource.org/licenses/Apache-2.0).
