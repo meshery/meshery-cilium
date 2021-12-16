@@ -23,7 +23,7 @@
    alt="Cilium logo" align="left" />
 </a>
 <p>
-<a href="https://cilium.io/">Cilium</a> is an open-source software for providing, securing, and observing network connectivity between container workloads - cloud-native, and fueled by the revolutionary Kernel technology eBPF. Cilium is bringing eBPF strengths to the world of Service Mesh. Cilium Service Mesh features eBPF-powered connectivity, traffic management, security, and observability.
+<a href="https://cilium.io/">Cilium</a> is open source software for providing, securing, and observing network connectivity between container workloads - cloud-native, and fueled by eBPF as Linux kernel technology. Cilium is bringing eBPF strengths to the world of service mesh. Cilium Service Mesh features eBPF-powered connectivity, traffic management, security, and observability.
  <br /> <br /> 
 </p>
 
