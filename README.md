@@ -17,7 +17,7 @@
 
 # Meshery Adapter for Cilium Service Mesh
 
-<h2><a href="https://meshery.layer5.io/docs">Cilium Service Mesh</h2>
+<h2><a href="https://docs.meshery.io/">Cilium Service Mesh</h2>
 <a href="https://cilium.io/">
  <img src=".github/readme/images/cilium.svg" style="margin:10px;" width="125px" 
    alt="Cilium logo" align="left" />
