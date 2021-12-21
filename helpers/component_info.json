@@ -1,0 +1,5 @@
+{
+  "name": "cilium",
+  "type": "adapter",
+  "next_error_code": 1025
+}
