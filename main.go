@@ -1,4 +1,4 @@
-// Copyright 2019 Layer5.io
+// Copyright 2022 Layer5 Authors
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -141,7 +141,7 @@ func serviceAddress() string {
 		return svcAddr
 	}
 
-	return "mesherylocal.layer5.io"
+	return "localhost"
 }
 
 func registerCapabilities(port string, log logger.Handler) {
