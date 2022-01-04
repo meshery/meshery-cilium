@@ -55,13 +55,6 @@ func (h *Handler) HandleApplicationConfiguration(config v1alpha1.Configuration, 
 	var msgs []string
 	for _, comp := range config.Spec.Components {
 		for _, trait := range comp.Traits {
-			if trait.Name == "automaticSidecarInjection.Cilium" {
-				namespaces := castSliceInterfaceToSliceString(trait.Properties["namespaces"].([]interface{}))
-				if err := handleNamespaceLabel(h, namespaces, isDel); err != nil {
-					errs = append(errs, err)
-				}
-			}
-
 			msgs = append(msgs, fmt.Sprintf("applied trait \"%s\" on service \"%s\"", trait.Name, comp.ComponentName))
 		}
 	}
@@ -72,17 +65,6 @@ func (h *Handler) HandleApplicationConfiguration(config v1alpha1.Configuration, 
 
 	return mergeMsgs(msgs), nil
 
-}
-
-func handleNamespaceLabel(h *Handler, namespaces []string, isDel bool) error {
-	var errs []error
-	for _, ns := range namespaces {
-		if err := h.sidecarInjection(ns, isDel); err != nil {
-			errs = append(errs, err)
-		}
-	}
-
-	return mergeErrors(errs)
 }
 
 func handleComponentCiliumMesh(h *Handler, comp v1alpha1.Component, isDel bool) (string, error) {

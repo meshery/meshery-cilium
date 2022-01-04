@@ -24,7 +24,7 @@ var (
 	ServerDefaults = map[string]string{
 		"name":     smp.ServiceMesh_CILIUM_SERVICE_MESH.Enum().String(),
 		"type":     "adapter",
-		"port":     "10009",
+		"port":     "10012",
 		"traceurl": status.None,
 	}
 

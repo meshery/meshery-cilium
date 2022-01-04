@@ -2,11 +2,11 @@
     "apiVersion": "core.oam.dev/v1alpha1",
     "kind": "WorkloadDefinition",
     "metadata": {
-        "name": "OSMMesh"
+        "name": "CiliumMesh"
     },
     "spec": {
         "definitionRef": {
-            "name": "osmmesh.meshery.layer5.io"
+            "name": "ciliummesh.meshery.layer5.io"
         }
     }
 }

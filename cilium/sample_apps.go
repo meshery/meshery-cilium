@@ -1,13 +1,11 @@
 package cilium
 
 import (
-	"context"
 	"fmt"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
 	"github.com/layer5io/meshery-adapter-library/status"
 	mesherykube "github.com/layer5io/meshkit/utils/kubernetes"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
 // noneNamespace indicates unset namespace
@@ -25,48 +23,6 @@ func (h *Handler) installSampleApp(del bool, namespace string, templates []adapt
 		}
 	}
 	return status.Installed, nil
-}
-
-// sidecarInjection enables/disables sidecar injection on a namespace
-func (h *Handler) sidecarInjection(namespace string, del bool) error {
-	kclient := h.KubeClient
-	if kclient == nil {
-		return ErrNilClient
-	}
-
-	// updating the label on the namespace
-	ns, err := kclient.CoreV1().Namespaces().Get(context.TODO(), namespace, metav1.GetOptions{})
-	if err != nil {
-		return ErrLoadNamespace(err, namespace)
-	}
-
-	if ns.ObjectMeta.Labels == nil {
-		ns.ObjectMeta.Labels = map[string]string{}
-	}
-	ns.ObjectMeta.Labels["cilium.io/monitored-by"] = "cilium"
-
-	if del {
-		delete(ns.ObjectMeta.Labels, "cilium.io/monitored-by")
-	}
-
-	// updating the annotations on the namespace
-	if ns.ObjectMeta.Annotations == nil {
-		ns.ObjectMeta.Annotations = map[string]string{}
-	}
-	ns.ObjectMeta.Annotations["cilium.io/sidecar-injection"] = "enabled"
-
-	if del {
-		delete(ns.ObjectMeta.Annotations, "cilium.io/sidecar-injection")
-	}
-
-	fmt.Println(ns.ObjectMeta)
-
-	_, err = kclient.CoreV1().Namespaces().Update(context.TODO(), ns, metav1.UpdateOptions{})
-	if err != nil {
-		return ErrLoadNamespace(err, namespace)
-	}
-
-	return nil
 }
 
 // createNS handles the creatin as well as deletion of namespaces
