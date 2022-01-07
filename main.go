@@ -32,7 +32,7 @@ import (
 
 var (
 	serviceName = "cilium-adapter"
-	version     = "none"
+	version     = "edge"
 	gitsha      = "none"
 )
 
