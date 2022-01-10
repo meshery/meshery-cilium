@@ -20,9 +20,9 @@ var (
 	// when an invalid mesh config is found
 	ErrMeshConfigCode = "1002"
 
-	// ErrRunCiliumCtlCmdCode represents the errors which are generated
+	// ErrRunCiliumCmdCode represents the errors which are generated
 	// during fetch manifest process
-	ErrRunCiliumCtlCmdCode = "1003"
+	ErrRunCiliumCmdCode = "1003"
 
 	// ErrDownloadBinaryCode represents the errors which are generated
 	// during binary download process
@@ -86,7 +86,7 @@ var (
 
 	// ErrOpInvalid represents the errors which are generated
 	// when an invalid operation is requested
-	ErrOpInvalid = errors.New(ErrOpInvalidCode, errors.Alert, []string{"Invalid operation"}, []string{"Istio adapter recived an invalid operation from the meshey server"}, []string{"The operation is not supported by the adapter", "Invalid operation name"}, []string{"Check if the operation name is valid and supported by the adapter"})
+	ErrOpInvalid = errors.New(ErrOpInvalidCode, errors.Alert, []string{"Invalid operation"}, []string{"Cilium adapter recived an invalid operation from the meshey server"}, []string{"The operation is not supported by the adapter", "Invalid operation name"}, []string{"Check if the operation name is valid and supported by the adapter"})
 
 	// ErrNilClient represents the error which is
 	// generated when kubernetes client is nil
@@ -111,7 +111,7 @@ var (
 
 // ErrInstallCilium is the error for install mesh
 func ErrInstallCilium(err error) error {
-	return errors.New(ErrInstallCiliumCode, errors.Alert, []string{"Error with Cilium operation"}, []string{"Error occured while installing Cilium mesh through Ciliumctl", err.Error()}, []string{}, []string{})
+	return errors.New(ErrInstallCiliumCode, errors.Alert, []string{"Error with Cilium operation"}, []string{"Error occured while installing Cilium mesh through Cilium", err.Error()}, []string{}, []string{})
 }
 
 // ErrTarXZF is the error for unzipping the file
@@ -124,9 +124,9 @@ func ErrMeshConfig(err error) error {
 	return errors.New(ErrMeshConfigCode, errors.Alert, []string{"Error configuration mesh"}, []string{err.Error(), "Error getting MeshSpecKey config from in-memory configuration"}, []string{}, []string{"Reconnect the adaptor to the meshkit server"})
 }
 
-// ErrRunCiliumCtlCmd is the error for mesh port forward
-func ErrRunCiliumCtlCmd(err error, des string) error {
-	return errors.New(ErrRunCiliumCtlCmdCode, errors.Alert, []string{"Error running istioctl command"}, []string{err.Error()}, []string{"Corrupted istioctl binary", "Command might be invalid"}, []string{})
+// ErrRunCiliumCmd is the error for mesh port forward
+func ErrRunCiliumCmd(err error, des string) error {
+	return errors.New(ErrRunCiliumCmdCode, errors.Alert, []string{"Error running cilium command"}, []string{err.Error()}, []string{"Corrupted cilium binary", "Command might be invalid"}, []string{})
 }
 
 // ErrDownloadBinary is the error while downloading Cilium binary
@@ -157,12 +157,6 @@ func ErrCreatingNS(err error) error {
 // ErrRunExecutable is the error while running an executable
 func ErrRunExecutable(err error) error {
 	return errors.New(ErrRunExecutableCode, errors.Alert, []string{"Error running executable"}, []string{err.Error()}, []string{"Corrupted binary", "Invalid operation"}, []string{"Check if the adaptor is executing a deprecated command"})
-}
-
-// ErrSidecarInjection is the error while enabling/disabling sidecar injection
-// on a particular namespace
-func ErrSidecarInjection(err error) error {
-	return errors.New(ErrSidecarInjectionCode, errors.Alert, []string{"Error occured while injection sidecar"}, []string{"Error occured while injecting sidercar using Cilium(ctl) `Cilium namespace add/remove <name>` ", err.Error()}, []string{"Corrupted binary", "Invalidoperation"}, []string{"Check if the adaptor is executing a deprecated command"})
 }
 
 // ErrApplyHelmChart is the error for applying helm chart
