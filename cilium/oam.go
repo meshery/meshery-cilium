@@ -136,19 +136,6 @@ func getKindFromComponent(comp v1alpha1.Component) string {
 	return comp.Annotations["pattern.meshery.io.mesh.workload.k8sKind"]
 }
 
-func castSliceInterfaceToSliceString(in []interface{}) []string {
-	var out []string
-
-	for _, v := range in {
-		cast, ok := v.(string)
-		if ok {
-			out = append(out, cast)
-		}
-	}
-
-	return out
-}
-
 func mergeErrors(errs []error) error {
 	if len(errs) == 0 {
 		return nil

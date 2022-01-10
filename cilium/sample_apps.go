@@ -1,15 +1,10 @@
 package cilium
 
 import (
-	"fmt"
-
 	"github.com/layer5io/meshery-adapter-library/adapter"
 	"github.com/layer5io/meshery-adapter-library/status"
 	mesherykube "github.com/layer5io/meshkit/utils/kubernetes"
 )
-
-// noneNamespace indicates unset namespace
-const noneNamespace = ""
 
 func (h *Handler) installSampleApp(del bool, namespace string, templates []adapter.Template) (string, error) {
 	st := status.Installing
@@ -23,24 +18,6 @@ func (h *Handler) installSampleApp(del bool, namespace string, templates []adapt
 		}
 	}
 	return status.Installed, nil
-}
-
-// createNS handles the creatin as well as deletion of namespaces
-func createNS(h *Handler, ns string, del bool) error {
-	manifest := fmt.Sprintf(`
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: %s
-`,
-		ns,
-	)
-
-	if err := h.applyManifest([]byte(manifest), del, noneNamespace); err != nil {
-		return err
-	}
-
-	return nil
 }
 
 func (h *Handler) applyManifest(contents []byte, isDel bool, namespace string) error {

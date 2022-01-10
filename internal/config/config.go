@@ -4,7 +4,6 @@ import (
 	"path"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
-	"github.com/layer5io/meshery-adapter-library/common"
 	"github.com/layer5io/meshery-adapter-library/config"
 	"github.com/layer5io/meshery-adapter-library/status"
 	configprovider "github.com/layer5io/meshkit/config/provider"
@@ -45,8 +44,6 @@ var (
 		configprovider.FileType: "yaml",
 		configprovider.FileName: "kubeconfig",
 	}
-
-	OperationsDefaults = getOperations(common.Operations)
 )
 
 func New(provider string) (h config.Handler, err error) {
@@ -76,11 +73,6 @@ func New(provider string) (h config.Handler, err error) {
 
 	// Setup mesh config
 	if err := h.SetObject(adapter.MeshSpecKey, MeshSpecDefaults); err != nil {
-		return nil, err
-	}
-
-	// Setup Operations Config
-	if err := h.SetObject(adapter.OperationsKey, OperationsDefaults); err != nil {
 		return nil, err
 	}
 
