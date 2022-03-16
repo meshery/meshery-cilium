@@ -5,7 +5,7 @@
 [![Docker Pulls](https://img.shields.io/docker/pulls/layer5/meshery-cilium.svg)](https://hub.docker.com/r/layer5/meshery-cilium)
 [![Go Report Card](https://goreportcard.com/badge/github.com/layer5io/meshery-cilium)](https://goreportcard.com/report/github.com/layer5io/meshery-cilium)
 [![Build Status](https://github.com/meshery/meshery-cilium/workflows/Meshery-Cilium/badge.svg)](https://github.com/meshery/meshery-cilium/actions)
-[![GitHub](https://img.shields.io/github/license/layer5io/meshery-istio.svg)](LICENSE)
+[![GitHub](https://img.shields.io/github/license/layer5io/meshery-cilium.svg)](LICENSE)
 [![GitHub issues by-label](https://img.shields.io/github/issues/layer5io/meshery-cilium/help%20wanted.svg)](https://github.com/meshery/meshery-cilium/issues?q=is%3Aopen+is%3Aissue+label%3A"help+wanted")
 [![Website](https://img.shields.io/website/https/layer5.io/meshery.svg)](https://meshery.io)
 [![Twitter Follow](https://img.shields.io/twitter/follow/layer5.svg?label=Follow&style=social)](https://twitter.com/intent/follow?screen_name=mesheryio)

@@ -18,4 +18,5 @@ assignees: ''
 <!-- Stipulations of functional behavior or non-functional items that must be in-place in order for the issue to be closed. -->
 
 #### Reference:
-- [Meshery Build & Release Strategy](https://docs.google.com/document/d/11nAxYtz2SUusCYZ0JeNRrOLIxkgmmbUVWz63MBZV2oE/edit#)
+
+- [Meshery Build & Release Strategy](https://docs.meshery.io/project/build-and-release)
