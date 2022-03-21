@@ -5,7 +5,9 @@ on:
       - 'master'
     tags:
       - 'v*'
-
+  release:
+    types: [published]
+    
 jobs:
   build:
     name: Build check
