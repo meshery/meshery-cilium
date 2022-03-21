@@ -8,7 +8,7 @@ check-clean-cache:
 
 protoc-setup:
 	cd meshes
-	wget https://raw.githubusercontent.com/layer5io/meshery/master/meshes/meshops.proto
+	wget https://raw.githubusercontent.com/meshery/meshery/master/meshes/meshops.proto
 
 proto:
 	protoc -I meshes/ meshes/meshops.proto --go_out=plugins=grpc:./meshes/
@@ -29,7 +29,7 @@ run:
 
 .PHONY: error
 error:
-	go run github.com/layer5io/meshkit/cmd/errorutil -d . analyze -i ./helpers -o ./helpers
+	go run github.com/meshery/meshkit/cmd/errorutil -d . analyze -i ./helpers -o ./helpers
 
 .PHONY: local-check
 local-check: tidy
