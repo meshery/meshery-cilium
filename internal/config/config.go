@@ -2,8 +2,10 @@ package config
 
 import (
 	"path"
+	"strings"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
+	"github.com/layer5io/meshery-adapter-library/common"
 	"github.com/layer5io/meshery-adapter-library/config"
 	"github.com/layer5io/meshery-adapter-library/status"
 	configprovider "github.com/layer5io/meshkit/config/provider"
@@ -18,7 +20,8 @@ const (
 )
 
 var (
-	configRootPath = path.Join(utils.GetHome(), ".meshery")
+	CiliumOperation = strings.ToLower(smp.ServiceMesh_CILIUM_SERVICE_MESH.Enum().String())
+	configRootPath  = path.Join(utils.GetHome(), ".meshery")
 
 	ServerDefaults = map[string]string{
 		"name":     smp.ServiceMesh_CILIUM_SERVICE_MESH.Enum().String(),
@@ -44,6 +47,8 @@ var (
 		configprovider.FileType: "yaml",
 		configprovider.FileName: "kubeconfig",
 	}
+
+	Operations = getOperations(common.Operations)
 )
 
 func New(provider string) (h config.Handler, err error) {
