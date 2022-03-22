@@ -1,0 +1,751 @@
+{
+  "entries": [
+    {
+      "name": "ErrInstallCiliumCode",
+      "old_code": "1000",
+      "code": "1000",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrTarXZFCode",
+      "old_code": "1001",
+      "code": "1001",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrMeshConfigCode",
+      "old_code": "1002",
+      "code": "1002",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrRunCiliumCmdCode",
+      "old_code": "1003",
+      "code": "1003",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrDownloadBinaryCode",
+      "old_code": "1004",
+      "code": "1004",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrInstallBinaryCode",
+      "old_code": "1005",
+      "code": "1005",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrSampleAppCode",
+      "old_code": "1006",
+      "code": "1006",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrCustomOperationCode",
+      "old_code": "1007",
+      "code": "1007",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrCreatingNSCode",
+      "old_code": "1008",
+      "code": "1008",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrRunExecutableCode",
+      "old_code": "1009",
+      "code": "1009",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrSidecarInjectionCode",
+      "old_code": "1010",
+      "code": "1010",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrOpInvalidCode",
+      "old_code": "1011",
+      "code": "1011",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrApplyHelmChartCode",
+      "old_code": "1012",
+      "code": "1012",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrNilClientCode",
+      "old_code": "1013",
+      "code": "1013",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrInvalidOAMComponentTypeCode",
+      "old_code": "1014",
+      "code": "1014",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrCiliumCoreComponentFailCode",
+      "old_code": "1015",
+      "code": "1015",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrProcessOAMCode",
+      "old_code": "1016",
+      "code": "1016",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrParseCiliumCoreComponentCode",
+      "old_code": "1017",
+      "code": "1017",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrParseOAMComponentCode",
+      "old_code": "1018",
+      "code": "1018",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrParseOAMConfigCode",
+      "old_code": "1019",
+      "code": "1019",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrGetLatestReleaseCode",
+      "old_code": "1020",
+      "code": "1020",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrLoadNamespaceCode",
+      "old_code": "1024",
+      "code": "1024",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrEmptyConfigCode",
+      "old_code": "1021",
+      "code": "1021",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "internal/config/error.go"
+    },
+    {
+      "name": "ErrGetLatestReleasesCode",
+      "old_code": "1022",
+      "code": "1022",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "internal/config/error.go"
+    },
+    {
+      "name": "ErrGetLatestReleaseNamesCode",
+      "old_code": "1023",
+      "code": "1023",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "internal/config/error.go"
+    },
+    {
+      "name": "ErrGetManifestNamesCode",
+      "old_code": "1024",
+      "code": "1024",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "internal/config/error.go"
+    }
+  ],
+  "literal_codes": {
+    "1000": [
+      {
+        "name": "ErrInstallCiliumCode",
+        "old_code": "1000",
+        "code": "1000",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1001": [
+      {
+        "name": "ErrTarXZFCode",
+        "old_code": "1001",
+        "code": "1001",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1002": [
+      {
+        "name": "ErrMeshConfigCode",
+        "old_code": "1002",
+        "code": "1002",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1003": [
+      {
+        "name": "ErrRunCiliumCmdCode",
+        "old_code": "1003",
+        "code": "1003",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1004": [
+      {
+        "name": "ErrDownloadBinaryCode",
+        "old_code": "1004",
+        "code": "1004",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1005": [
+      {
+        "name": "ErrInstallBinaryCode",
+        "old_code": "1005",
+        "code": "1005",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1006": [
+      {
+        "name": "ErrSampleAppCode",
+        "old_code": "1006",
+        "code": "1006",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1007": [
+      {
+        "name": "ErrCustomOperationCode",
+        "old_code": "1007",
+        "code": "1007",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1008": [
+      {
+        "name": "ErrCreatingNSCode",
+        "old_code": "1008",
+        "code": "1008",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1009": [
+      {
+        "name": "ErrRunExecutableCode",
+        "old_code": "1009",
+        "code": "1009",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1010": [
+      {
+        "name": "ErrSidecarInjectionCode",
+        "old_code": "1010",
+        "code": "1010",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1011": [
+      {
+        "name": "ErrOpInvalidCode",
+        "old_code": "1011",
+        "code": "1011",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1012": [
+      {
+        "name": "ErrApplyHelmChartCode",
+        "old_code": "1012",
+        "code": "1012",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1013": [
+      {
+        "name": "ErrNilClientCode",
+        "old_code": "1013",
+        "code": "1013",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1014": [
+      {
+        "name": "ErrInvalidOAMComponentTypeCode",
+        "old_code": "1014",
+        "code": "1014",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1015": [
+      {
+        "name": "ErrCiliumCoreComponentFailCode",
+        "old_code": "1015",
+        "code": "1015",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1016": [
+      {
+        "name": "ErrProcessOAMCode",
+        "old_code": "1016",
+        "code": "1016",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1017": [
+      {
+        "name": "ErrParseCiliumCoreComponentCode",
+        "old_code": "1017",
+        "code": "1017",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1018": [
+      {
+        "name": "ErrParseOAMComponentCode",
+        "old_code": "1018",
+        "code": "1018",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1019": [
+      {
+        "name": "ErrParseOAMConfigCode",
+        "old_code": "1019",
+        "code": "1019",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1020": [
+      {
+        "name": "ErrGetLatestReleaseCode",
+        "old_code": "1020",
+        "code": "1020",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1021": [
+      {
+        "name": "ErrEmptyConfigCode",
+        "old_code": "1021",
+        "code": "1021",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "internal/config/error.go"
+      }
+    ],
+    "1022": [
+      {
+        "name": "ErrGetLatestReleasesCode",
+        "old_code": "1022",
+        "code": "1022",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "internal/config/error.go"
+      }
+    ],
+    "1023": [
+      {
+        "name": "ErrGetLatestReleaseNamesCode",
+        "old_code": "1023",
+        "code": "1023",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "internal/config/error.go"
+      }
+    ],
+    "1024": [
+      {
+        "name": "ErrLoadNamespaceCode",
+        "old_code": "1024",
+        "code": "1024",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      },
+      {
+        "name": "ErrGetManifestNamesCode",
+        "old_code": "1024",
+        "code": "1024",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "internal/config/error.go"
+      }
+    ]
+  },
+  "call_expr_codes": [],
+  "deprecated_new_default": [],
+  "errors_raw": {
+    "ErrApplyHelmChartCode": [
+      {
+        "name": "ErrApplyHelmChartCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error occured while applying Helm Chart",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrCiliumCoreComponentFailCode": [
+      {
+        "name": "ErrCiliumCoreComponentFailCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "error in Cilium core component",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrCreatingNSCode": [
+      {
+        "name": "ErrCreatingNSCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while applying manifest to create a namespace",
+        "short_description": "Error creating namespace",
+        "probable_cause": "Invalid kubeclient config\nInvalid manifest",
+        "suggested_remediation": "Reupload the kubeconfig in the Meshery Server and reconnect the adapter"
+      }
+    ],
+    "ErrCustomOperationCode": [
+      {
+        "name": "ErrCustomOperationCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while applying custom manifest to the cluster",
+        "short_description": "Error with custom operation",
+        "probable_cause": "Invalid kubeclient config\nInvalid manifest",
+        "suggested_remediation": "Reupload the kubconfig in the Meshery Server and reconnect the adapter"
+      }
+    ],
+    "ErrDownloadBinaryCode": [
+      {
+        "name": "ErrDownloadBinaryCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while download Cilium binary from its github release",
+        "short_description": "Error downloading Cilium binary",
+        "probable_cause": "Checkout https://docs.github.com/en/rest/reference/repos#releases for more details",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrEmptyConfigCode": [
+      {
+        "name": "ErrEmptyConfigCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Config is empty",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrGetLatestReleaseCode": [
+      {
+        "name": "ErrGetLatestReleaseCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Could not get latest version",
+        "probable_cause": "Latest version could not be found at the specified url",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrGetLatestReleaseNamesCode": [
+      {
+        "name": "ErrGetLatestReleaseNamesCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Failed to extract release names",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrGetLatestReleasesCode": [
+      {
+        "name": "ErrGetLatestReleasesCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Unable to fetch release info",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrGetManifestNamesCode": [
+      {
+        "name": "ErrGetManifestNamesCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Unable to fetch manifest names from github",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrInstallBinaryCode": [
+      {
+        "name": "ErrInstallBinaryCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error installing Cilium binary",
+        "probable_cause": "Corrupted Cilium release binary\nInvalid installation location",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrInstallCiliumCode": [
+      {
+        "name": "ErrInstallCiliumCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while installing Cilium mesh through Cilium",
+        "short_description": "Error with Cilium operation",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrInvalidOAMComponentTypeCode": [
+      {
+        "name": "ErrInvalidOAMComponentTypeCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "invalid OAM component name: ",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrLoadNamespaceCode": [
+      {
+        "name": "ErrLoadNamespaceCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error occured while applying namespace ",
+        "probable_cause": "Trying to access a namespace which is not available",
+        "suggested_remediation": "Verify presence of namespace. Confirm Meshery ServiceAccount permissions"
+      }
+    ],
+    "ErrMeshConfigCode": [
+      {
+        "name": "ErrMeshConfigCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error getting MeshSpecKey config from in-memory configuration",
+        "short_description": "Error configuration mesh",
+        "probable_cause": "",
+        "suggested_remediation": "Reconnect the adaptor to the meshkit server"
+      }
+    ],
+    "ErrNilClientCode": [
+      {
+        "name": "ErrNilClientCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Kubernetes client is nil",
+        "short_description": "kubernetes client not initialized",
+        "probable_cause": "kubernetes client not initialized",
+        "suggested_remediation": "Reconnect the adaptor to Meshery server"
+      }
+    ],
+    "ErrOpInvalidCode": [
+      {
+        "name": "ErrOpInvalidCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Cilium adapter recived an invalid operation from the meshey server",
+        "short_description": "Invalid operation",
+        "probable_cause": "The operation is not supported by the adapter\nInvalid operation name",
+        "suggested_remediation": "Check if the operation name is valid and supported by the adapter"
+      }
+    ],
+    "ErrParseCiliumCoreComponentCode": [
+      {
+        "name": "ErrParseCiliumCoreComponentCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Cilium core component manifest parsing failing",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrParseOAMComponentCode": [
+      {
+        "name": "ErrParseOAMComponentCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while prasing application component in the OAM request made",
+        "short_description": "error parsing the component",
+        "probable_cause": "Invalid OAM component passed in OAM request",
+        "suggested_remediation": "Check if your request has vaild OAM components"
+      }
+    ],
+    "ErrParseOAMConfigCode": [
+      {
+        "name": "ErrParseOAMConfigCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while prasing component config in the OAM request made",
+        "short_description": "error parsing the configuration",
+        "probable_cause": "Invalid OAM config passed in OAM request",
+        "suggested_remediation": "Check if your request has vaild OAM config"
+      }
+    ],
+    "ErrProcessOAMCode": [
+      {
+        "name": "ErrProcessOAMCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "error performing OAM operations",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrRunCiliumCmdCode": [
+      {
+        "name": "ErrRunCiliumCmdCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error running cilium command",
+        "probable_cause": "Corrupted cilium binary\nCommand might be invalid",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrRunExecutableCode": [
+      {
+        "name": "ErrRunExecutableCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error running executable",
+        "probable_cause": "Corrupted binary\nInvalid operation",
+        "suggested_remediation": "Check if the adaptor is executing a deprecated command"
+      }
+    ],
+    "ErrSampleAppCode": [
+      {
+        "name": "ErrSampleAppCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while trying to install a sample application using manifests",
+        "short_description": "Error with sample app operation",
+        "probable_cause": "Invalid kubeclient config\nInvalid manifest",
+        "suggested_remediation": "Reconnect your adapter to meshery server to refresh the kubeclient"
+      }
+    ],
+    "ErrTarXZFCode": [
+      {
+        "name": "ErrTarXZFCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error while extracting file",
+        "probable_cause": "The gzip might be corrupt",
+        "suggested_remediation": "Retry the operation"
+      }
+    ]
+  }
+}
