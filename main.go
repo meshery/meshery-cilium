@@ -18,6 +18,7 @@ import (
 	"os"
 	"path"
 	"strings"
+	"path/filepath"
 	"time"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
@@ -27,8 +28,7 @@ import (
 	"github.com/layer5io/meshery-cilium/internal/config"
 	configprovider "github.com/layer5io/meshkit/config/provider"
 	"github.com/layer5io/meshkit/logger"
-	"github.com/layer5io/meshkit/utils/manifests"
-	smp "github.com/layer5io/service-mesh-performance/spec"
+	"github.com/layer5io/meshery-cilium/build"
 )
 
 var (
@@ -170,49 +170,54 @@ func registerDynamicCapabilities(port string, log logger.Handler) {
 
 }
 func registerWorkloads(port string, log logger.Handler) {
-	var url string
-	var gm string
+	version := build.DefaultVersion
+	url := build.DefaultURL
+	gm := build.DefaultGenerationMethod
+	// Prechecking to skip comp gen
+	if os.Getenv("FORCE_DYNAMIC_REG") != "true" && oam.AvailableVersions[version] {
+		log.Info("Components available statically for version ", version, ". Skipping dynamic component registeration")
+		return
+	}
 
 	//If a URL is passed from env variable, it will be used for component generation with default method being "using manifests"
 	// In case a helm chart URL is passed, COMP_GEN_METHOD env variable should be set to Helm otherwise the component generation fails
-	if os.Getenv("COMP_GEN_URL") != "" {
+	if os.Getenv("COMP_GEN_URL") != "" && (os.Getenv("COMP_GEN_METHOD") == "Helm" || os.Getenv("COMP_GEN_METHOD") == "Manifest") {
 		url = os.Getenv("COMP_GEN_URL")
-		if os.Getenv("COMP_GEN_METHOD") == "Helm" || os.Getenv("COMP_GEN_METHOD") == "Manifest" {
-			gm = os.Getenv("COMP_GEN_METHOD")
-		} else {
-			gm = adapter.Manifests
-		}
+		gm = os.Getenv("COMP_GEN_METHOD")
 		log.Info("Registering workload components from url ", url, " using ", gm, " method...")
-	} else {
-		log.Info("Registering latest workload components for version ", version)
-		//default way
-		url = "https://raw.githubusercontent.com/cilium/cilium/" + version + "/install/kubernetes/cilium/Chart.yaml"
-		gm = adapter.Manifests
 	}
-	// Register workloads
-	if err := adapter.RegisterWorkLoadsDynamically(mesheryServerAddress(), serviceAddress()+":"+port, &adapter.DynamicComponentsConfig{
-		TimeoutInMinutes: 30,
-		URL:              url,
-		GenerationMethod: gm,
-		Config: manifests.Config{
-			Name:        smp.ServiceMesh_Type_name[int32(smp.ServiceMesh_CILIUM_SERVICE_MESH)],
-			MeshVersion: version,
-			Filter: manifests.CrdFilter{
-				RootFilter:    []string{"$[?(@.kind==\"CustomResourceDefinition\")]"},
-				NameFilter:    []string{"$..[\"spec\"][\"names\"][\"kind\"]"},
-				VersionFilter: []string{"$[0]..spec.versions[0]"},
-				GroupFilter:   []string{"$[0]..spec"},
-				SpecFilter:    []string{"$[0]..openAPIV3Schema.properties.spec"},
-				ItrFilter:     []string{"$[?(@.spec.names.kind"},
-				ItrSpecFilter: []string{"$[?(@.spec.names.kind"},
-				VField:        "name",
-				GField:        "group",
-			},
-		},
-		Operation: config.CiliumOperation,
-	}); err != nil {
-		log.Info(err.Error())
+
+	log.Info("Registering latest workload components for version ", version)
+	for _, crd := range build.CRDNames {
+		crdurl := url + crd
+		log.Info("Registering ", crdurl)
+		if err := adapter.CreateComponents(adapter.StaticCompConfig{
+			URL:     crdurl,
+			Method:  gm,
+			Path:    build.WorkloadPath,
+			DirName: version,
+			Config:  build.NewConfig(version),
+		}); err != nil {
+			log.Info(err.Error())
+			return
+		}
+	}
+
+	//The below log is checked in the workflows. If you change this log, reflect that change in the workflow where components are generated
+	log.Info("Component creation completed for version ", version)
+
+	//Now we will register in case
+	log.Info("Registering workloads with Meshery Server for version ", version)
+	originalPath := oam.WorkloadPath
+	oam.WorkloadPath = filepath.Join(originalPath, version)
+	defer resetWorkloadPath(originalPath)
+	if err := oam.RegisterWorkloads(mesheryServerAddress(), serviceAddress()+":"+port); err != nil {
+		log.Error(err)
 		return
 	}
-	log.Info("Latest workload components successfully registered.")
+	log.Info("Latest workload components successfully registered for version ", version)
+}
+
+func resetWorkloadPath(orig string) {
+	oam.WorkloadPath = orig
 }

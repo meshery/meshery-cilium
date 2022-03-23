@@ -12,9 +12,13 @@ import (
 
 var (
 	basePath, _  = os.Getwd()
-	workloadPath = filepath.Join(basePath, "templates", "oam", "workloads")
+	WorkloadPath = filepath.Join(basePath, "templates", "oam", "workloads")
 	traitPath    = filepath.Join(basePath, "templates", "oam", "traits")
 )
+
+
+// AvailableVersions denote the component versions available statically
+var AvailableVersions = map[string]bool{}
 
 type schemaDefinitionPathSet struct {
 	oamDefinitionPath string
@@ -29,7 +33,7 @@ type schemaDefinitionPathSet struct {
 func RegisterWorkloads(runtime, host string) error {
 	oamRDP := []adapter.OAMRegistrantDefinitionPath{}
 
-	pathSets, err := load(workloadPath)
+	pathSets, err := load(WorkloadPath)
 	if err != nil {
 		return err
 	}
@@ -108,6 +112,7 @@ func load(basePath string) ([]schemaDefinitionPathSet, error) {
 				jsonSchemaPath:    fmt.Sprintf("%s.meshery.layer5io.schema.json", nameWithPath),
 				name:              filepath.Base(nameWithPath),
 			})
+			AvailableVersions[filepath.Base(filepath.Dir(path))] = true
 		}
 
 		return nil
@@ -117,3 +122,9 @@ func load(basePath string) ([]schemaDefinitionPathSet, error) {
 
 	return res, nil
 }
+
+func init() {
+	//This is done only to find available versions at startup
+	_, _ = load(WorkloadPath)
+}
+
