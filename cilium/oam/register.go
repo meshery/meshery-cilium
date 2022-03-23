@@ -11,8 +11,9 @@ import (
 )
 
 var (
-	basePath, _  = os.Getwd()
+	//WorkloadPath will be used by both static and component generation
 	WorkloadPath = filepath.Join(basePath, "templates", "oam", "workloads")
+	basePath, _  = os.Getwd()	
 	traitPath    = filepath.Join(basePath, "templates", "oam", "traits")
 )
 
