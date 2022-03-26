@@ -83,7 +83,7 @@ func New(provider string) (h config.Handler, err error) {
 
 	// Setup Operations Config
 	if err := h.SetObject(adapter.OperationsKey, Operations); err != nil {
-		return nil, err
+		return nil, adapter.ErrClientConfig(err)
 	}
 
 	return h, nil
