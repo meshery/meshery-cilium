@@ -170,8 +170,8 @@
     },
     {
       "name": "ErrLoadNamespaceCode",
-      "old_code": "1024",
-      "code": "1024",
+      "old_code": "1026",
+      "code": "1026",
       "code_is_literal": true,
       "code_is_int": true,
       "path": "cilium/error.go"
@@ -452,20 +452,22 @@
     ],
     "1024": [
       {
-        "name": "ErrLoadNamespaceCode",
-        "old_code": "1024",
-        "code": "1024",
-        "code_is_literal": true,
-        "code_is_int": true,
-        "path": "cilium/error.go"
-      },
-      {
         "name": "ErrGetManifestNamesCode",
         "old_code": "1024",
         "code": "1024",
         "code_is_literal": true,
         "code_is_int": true,
         "path": "internal/config/error.go"
+      }
+    ],
+    "1026": [
+      {
+        "name": "ErrLoadNamespaceCode",
+        "old_code": "1026",
+        "code": "1026",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
       }
     ]
   },
@@ -502,7 +504,7 @@
         "long_description": "Error occured while applying manifest to create a namespace",
         "short_description": "Error creating namespace",
         "probable_cause": "Invalid kubeclient config\nInvalid manifest",
-        "suggested_remediation": "Reupload the kubeconfig in the Meshery Server and reconnect the adapter"
+        "suggested_remediation": "Upload the kubeconfig in the Meshery Server and reconnect the adapter"
       }
     ],
     "ErrCustomOperationCode": [
@@ -513,7 +515,7 @@
         "long_description": "Error occured while applying custom manifest to the cluster",
         "short_description": "Error with custom operation",
         "probable_cause": "Invalid kubeclient config\nInvalid manifest",
-        "suggested_remediation": "Reupload the kubconfig in the Meshery Server and reconnect the adapter"
+        "suggested_remediation": "Upload the kubconfig in the Meshery Server and reconnect the adapter"
       }
     ],
     "ErrDownloadBinaryCode": [
@@ -733,7 +735,7 @@
         "long_description": "Error occured while trying to install a sample application using manifests",
         "short_description": "Error with sample app operation",
         "probable_cause": "Invalid kubeclient config\nInvalid manifest",
-        "suggested_remediation": "Reconnect your adapter to meshery server to refresh the kubeclient"
+        "suggested_remediation": "Reconnect your adapter to Meshery Server to refresh the kubeclient"
       }
     ],
     "ErrTarXZFCode": [
