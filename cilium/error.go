@@ -106,7 +106,7 @@ var (
 	ErrGetLatestReleaseCode = "1020"
 
 	//ErrLoadNamespaceCode occur during the process of applying namespace
-	ErrLoadNamespaceCode = "1024"
+	ErrLoadNamespaceCode = "1026"
 )
 
 // ErrInstallCilium is the error for install mesh
@@ -141,17 +141,17 @@ func ErrInstallBinary(err error) error {
 
 // ErrSampleApp is the error for streaming event
 func ErrSampleApp(err error) error {
-	return errors.New(ErrSampleAppCode, errors.Alert, []string{"Error with sample app operation"}, []string{err.Error(), "Error occured while trying to install a sample application using manifests"}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reconnect your adapter to meshery server to refresh the kubeclient"})
+	return errors.New(ErrSampleAppCode, errors.Alert, []string{"Error with sample app operation"}, []string{err.Error(), "Error occured while trying to install a sample application using manifests"}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reconnect your adapter to Meshery Server to refresh the kubeclient"})
 }
 
 // ErrCustomOperation is the error for streaming event
 func ErrCustomOperation(err error) error {
-	return errors.New(ErrCustomOperationCode, errors.Alert, []string{"Error with custom operation"}, []string{"Error occured while applying custom manifest to the cluster", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reupload the kubconfig in the Meshery Server and reconnect the adapter"})
+	return errors.New(ErrCustomOperationCode, errors.Alert, []string{"Error with custom operation"}, []string{"Error occured while applying custom manifest to the cluster", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubconfig in the Meshery Server and reconnect the adapter"})
 }
 
 // ErrCreatingNS is the error while creating the namespace
 func ErrCreatingNS(err error) error {
-	return errors.New(ErrCreatingNSCode, errors.Alert, []string{"Error creating namespace"}, []string{"Error occured while applying manifest to create a namespace", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reupload the kubeconfig in the Meshery Server and reconnect the adapter"})
+	return errors.New(ErrCreatingNSCode, errors.Alert, []string{"Error creating namespace"}, []string{"Error occured while applying manifest to create a namespace", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubeconfig in the Meshery Server and reconnect the adapter"})
 }
 
 // ErrRunExecutable is the error while running an executable

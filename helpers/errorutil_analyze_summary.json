@@ -1,13 +1,8 @@
 {
   "min_code": 1000,
-  "max_code": 1024,
+  "max_code": 1026,
   "next_code": 1025,
-  "duplicate_codes": {
-    "1024": [
-      "ErrLoadNamespaceCode",
-      "ErrGetManifestNamesCode"
-    ]
-  },
+  "duplicate_codes": {},
   "duplicate_names": [],
   "call_expr_codes": [],
   "int_codes": [
@@ -35,7 +30,8 @@
     1021,
     1022,
     1023,
-    1024
+    1024,
+    1026
   ],
   "deprecated_new_default": []
 }
