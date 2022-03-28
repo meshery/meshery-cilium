@@ -71,5 +71,6 @@ func (h *Handler) applyHelmChart(del bool, version, namespace string) error {
 		Namespace:       "kube-system",
 		Action:          act,
 		CreateNamespace: true,
+		ReleaseName:     chart,
 	})
 }
