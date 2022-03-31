@@ -62,7 +62,8 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 	switch request.OperationName {
 	case internalconfig.CiliumOperation:
 		go func(hh *Handler, ee *adapter.Event) {
-			version := string(operations[request.OperationName].Versions[0])
+			version := string(operations[request.OperationName].Versions[len(operations[request.OperationName].Versions)-1])
+			fmt.Println("version: ", version)
 			stat, err := hh.installCilium(request.IsDeleteOperation, version, request.Namespace)
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s Cilium service mesh", stat)
