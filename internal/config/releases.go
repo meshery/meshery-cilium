@@ -72,7 +72,7 @@ func GetLatestReleaseNames(limit int) ([]adapter.Version, error) {
 	return result[:limit], nil
 }
 
-// GetLatestReleases fetches the latest releases from the traefik mesh repository
+// GetLatestReleases fetches the latest releases from the cilium mesh repository
 func getLatestReleases(releases uint) ([]*Release, error) {
 	releaseAPIURL := "https://api.github.com/repos/cilium/cilium/releases?per_page=" + fmt.Sprint(releases)
 	// We need a variable url here hence using nosec
