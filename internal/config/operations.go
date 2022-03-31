@@ -11,7 +11,7 @@ var (
 
 func getOperations(dev adapter.Operations) adapter.Operations {
 	var adapterVersions []adapter.Version
-	versions, _ := GetLatestReleaseNames(3)
+	versions, _ := GetLatestReleaseNames(2)
 	for _, v := range versions {
 		adapterVersions = append(adapterVersions, adapter.Version(v))
 	}
