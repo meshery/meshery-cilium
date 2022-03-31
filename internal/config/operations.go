@@ -1,10 +1,8 @@
 package config
 
 import (
-
 	"github.com/layer5io/meshery-adapter-library/adapter"
 	"github.com/layer5io/meshery-adapter-library/meshes"
-	"github.com/layer5io/meshkit/utils"
 )
 
 var (
@@ -13,7 +11,7 @@ var (
 
 func getOperations(dev adapter.Operations) adapter.Operations {
 	var adapterVersions []adapter.Version
-	versions, _ := utils.GetLatestReleaseTagsSorted("cilium", "cilium")
+	versions, _ := GetLatestReleaseNames(3)
 	for _, v := range versions {
 		adapterVersions = append(adapterVersions, adapter.Version(v))
 	}
