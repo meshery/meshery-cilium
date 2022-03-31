@@ -1,6 +1,7 @@
 package config
 
 import (
+
 	"github.com/layer5io/meshery-adapter-library/adapter"
 	"github.com/layer5io/meshery-adapter-library/meshes"
 	"github.com/layer5io/meshkit/utils"
@@ -16,6 +17,7 @@ func getOperations(dev adapter.Operations) adapter.Operations {
 	for _, v := range versions {
 		adapterVersions = append(adapterVersions, adapter.Version(v))
 	}
+
 	dev[CiliumOperation] = &adapter.Operation{
 		Type:                 int32(meshes.OpCategory_INSTALL),
 		Description:          "Cilium Service Mesh",
