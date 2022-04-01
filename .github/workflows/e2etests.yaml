@@ -34,7 +34,7 @@ jobs:
            yq e -i '.services.cilium.settings.version="${{ steps.glrt.outputs.release }}"' ./.github/install/deploy.yaml 
            cat ./.github/install/deploy.yaml
       - name: Uploading file
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.0.0
         with:
           name: patternfile
           path: ./.github/install/deploy.yaml 
