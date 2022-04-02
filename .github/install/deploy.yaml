@@ -1,6 +1,6 @@
 name: CiliumMesh
 services:
-  cilum:
+  cilium:
     type: CiliumMesh
     namespace: kube-system
     settings:
