@@ -169,9 +169,49 @@
       "path": "cilium/error.go"
     },
     {
+      "name": "ErrMakingBinExecutableCode",
+      "old_code": "1025",
+      "code": "1025",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
       "name": "ErrLoadNamespaceCode",
       "old_code": "1026",
       "code": "1026",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrUnpackingTarCode",
+      "old_code": "1027",
+      "code": "1027",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrUnzipFileCode",
+      "old_code": "1028",
+      "code": "1028",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrDownloadingTarCode",
+      "old_code": "1029",
+      "code": "1029",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
+      "name": "ErrGettingReleaseCode",
+      "old_code": "1030",
+      "code": "1030",
       "code_is_literal": true,
       "code_is_int": true,
       "path": "cilium/error.go"
@@ -460,11 +500,61 @@
         "path": "internal/config/error.go"
       }
     ],
+    "1025": [
+      {
+        "name": "ErrMakingBinExecutableCode",
+        "old_code": "1025",
+        "code": "1025",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
     "1026": [
       {
         "name": "ErrLoadNamespaceCode",
         "old_code": "1026",
         "code": "1026",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1027": [
+      {
+        "name": "ErrUnpackingTarCode",
+        "old_code": "1027",
+        "code": "1027",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1028": [
+      {
+        "name": "ErrUnzipFileCode",
+        "old_code": "1028",
+        "code": "1028",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1029": [
+      {
+        "name": "ErrDownloadingTarCode",
+        "old_code": "1029",
+        "code": "1029",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
+    ],
+    "1030": [
+      {
+        "name": "ErrGettingReleaseCode",
+        "old_code": "1030",
+        "code": "1030",
         "code_is_literal": true,
         "code_is_int": true,
         "path": "cilium/error.go"
@@ -529,6 +619,17 @@
         "suggested_remediation": ""
       }
     ],
+    "ErrDownloadingTarCode": [
+      {
+        "name": "ErrDownloadingTarCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error occured while downloading Istio tar",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
     "ErrEmptyConfigCode": [
       {
         "name": "ErrEmptyConfigCode",
@@ -584,6 +685,17 @@
         "suggested_remediation": ""
       }
     ],
+    "ErrGettingReleaseCode": [
+      {
+        "name": "ErrGettingReleaseCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "Error occured while installing Cilium mesh through Cilium",
+        "short_description": "Error with Cilium operation",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
     "ErrInstallBinaryCode": [
       {
         "name": "ErrInstallBinaryCode",
@@ -626,6 +738,17 @@
         "short_description": "Error occured while applying namespace ",
         "probable_cause": "Trying to access a namespace which is not available",
         "suggested_remediation": "Verify presence of namespace. Confirm Meshery ServiceAccount permissions"
+      }
+    ],
+    "ErrMakingBinExecutableCode": [
+      {
+        "name": "ErrMakingBinExecutableCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error while making cilium cli an executable",
+        "probable_cause": "",
+        "suggested_remediation": ""
       }
     ],
     "ErrMeshConfigCode": [
@@ -747,6 +870,28 @@
         "short_description": "Error while extracting file",
         "probable_cause": "The gzip might be corrupt",
         "suggested_remediation": "Retry the operation"
+      }
+    ],
+    "ErrUnpackingTarCode": [
+      {
+        "name": "ErrUnpackingTarCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error occured while unpacking tar",
+        "probable_cause": "",
+        "suggested_remediation": ""
+      }
+    ],
+    "ErrUnzipFileCode": [
+      {
+        "name": "ErrUnzipFileCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "",
+        "short_description": "Error while unzipping",
+        "probable_cause": "File might be corrupt",
+        "suggested_remediation": ""
       }
     ]
   }
