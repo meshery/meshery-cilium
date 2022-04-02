@@ -27,7 +27,7 @@ jobs:
       - name: Get latest release tag
         id: glrt
         run: |
-          NEW_CILIUM_VERSION=$(curl --silent "https://api.github.com/repos/cilium/cilium/releases" | jq ' .[] | select(.tag_name|test("stable")) | ."tag_name"' | sed -n 1p$'\n' | tr -d '"')
+          NEW_CILIUM_VERSION= ($curl --silent "https://api.github.com/repos/cilium/cilium/releases" | jq ' .[] | select(.tag_name | test("rc*") | not) .tag_name' | sed -n 1p$'\n' | tr -d '"')
           echo "::set-output name=release::$NEW_CILIUM_VERSION"
       - name: Change service mesh version in patternfile
         run: | 
