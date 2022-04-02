@@ -19,6 +19,8 @@ require (
 	gopkg.in/yaml.v2 v2.4.0
 )
 
+require github.com/google/go-querystring v1.1.0 // indirect
+
 require (
 	github.com/Azure/go-ansiterm v0.0.0-20210617225240-d185dfc1b5a1 // indirect
 	github.com/BurntSushi/toml v0.3.1 // indirect
@@ -67,6 +69,7 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/btree v1.0.1 // indirect
 	github.com/google/go-cmp v0.5.5 // indirect
+	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/google/shlex v0.0.0-20191202100458-e7afc7fbc510 // indirect
 	github.com/google/uuid v1.2.0 // indirect
