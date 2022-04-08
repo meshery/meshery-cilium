@@ -215,26 +215,26 @@ func ErrLoadNamespace(err error, s string) error {
 // ErrMakingBinExecutable occurs when cilium cli binary couldn't be made
 // executable
 func ErrMakingBinExecutable(err error) error {
-	return errors.New(ErrMakingBinExecutableCode, errors.Alert, []string{"Error while making cilium cli an executable"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrMakingBinExecutableCode, errors.Alert, []string{"Error while making cilium cli an executable"}, []string{err.Error()}, []string{"Download might be corrupted."}, []string{"Please retry operation."})
 }
 
 // ErrUnpackingTar is the error when tar unpack fails
 func ErrUnpackingTar(err error) error {
-	return errors.New(ErrUnpackingTarCode, errors.Alert, []string{"Error occured while unpacking tar"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrUnpackingTarCode, errors.Alert, []string{"Error occured while unpacking tar"}, []string{err.Error()}, []string{"The gzip might be corrupt"}, []string{"Please retry operation."})
 }
 
 // ErrUnzipFile is the error for unzipping the file
 func ErrUnzipFile(err error) error {
-	return errors.New(ErrUnzipFileCode, errors.Alert, []string{"Error while unzipping"}, []string{err.Error()}, []string{"File might be corrupt"}, []string{})
+	return errors.New(ErrUnzipFileCode, errors.Alert, []string{"Error while unzipping"}, []string{err.Error()}, []string{"File might be corrupt"}, []string{"Please retry operation."})
 }
 
 // ErrDownloadingTar is the error when tar download fails
 func ErrDownloadingTar(err error) error {
-	return errors.New(ErrDownloadingTarCode, errors.Alert, []string{"Error occured while downloading Istio tar"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrDownloadingTarCode, errors.Alert, []string{"Error occured while downloading Cilium tar"}, []string{err.Error()}, []string{"Error occured while download cilium tar from its release url"}, []string{"Checkout https://github.com/cilium/cilium-cli/releases/download/<release>/cilium-<platform>-<arch>.tar.gz for more details"})
 }
 
 // ErrGettingRelease is the error when getting release tag fails
 func ErrGettingRelease(err error) error {
-	return errors.New(ErrGettingReleaseCode, errors.Alert, []string{"Error with Cilium operation"}, []string{"Error occured while installing Cilium mesh through Cilium", err.Error()}, []string{}, []string{})
+	return errors.New(ErrGettingReleaseCode, errors.Alert, []string{"Could not get latest version"}, []string{err.Error()}, []string{"Latest version could not be found at the specified url"}, []string{})
 }
 
