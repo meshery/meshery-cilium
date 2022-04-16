@@ -235,6 +235,6 @@ func ErrDownloadingTar(err error) error {
 
 // ErrGettingRelease is the error when getting release tag fails
 func ErrGettingRelease(err error) error {
-	return errors.New(ErrGettingReleaseCode, errors.Alert, []string{"Could not get latest version"}, []string{err.Error()}, []string{"Latest version could not be found at the specified url"}, []string{})
+	return errors.New(ErrGettingReleaseCode, errors.Alert, []string{"Could not get latest version"}, []string{err.Error()}, []string{"Latest version could not be found at the specified url"}, []string{"Verify network connectivity.", "Ensure github.com is reachable.", "Try retrying the operation."})
 }
 
