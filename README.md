@@ -1,4 +1,4 @@
-<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src=".github/readme/images/meshery/meshery-logo-tag-light-text-side.svg"  width="70%" /></a><br /><br /></p>
+<p style="text-align:center;" align="center"><a href="https://layer5.io/meshery"><img align="center" style="margin-bottom:20px;" src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/readme/images/meshery/meshery-logo-tag-light-text-side.svg"  width="70%" /></a><br /><br /></p>
  
 <div align="center">
 
@@ -20,7 +20,7 @@
 
 <h2><a href="https://docs.meshery.io/">Cilium Service Mesh</h2>
 <a href="https://cilium.io/">
- <img src=".github/readme/images/cilium.svg" style="margin:10px;" width="125px" 
+ <img src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/readme/images/cilium.svg" style="margin:10px;" width="125px" 
    alt="Cilium logo" align="left" />
 </a>
 <p>
@@ -30,7 +30,7 @@
 
 <p style="clear:both;">
 <h2><a href="https://layer5.io/meshery">Meshery</a></h2>
-<a href="https://meshery.io"><img src=".github/readme/images/meshery/meshery-logo-light.svg"
+<a href="https://meshery.io"><img src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/readme/images/meshery/meshery-logo-light.svg"
 style="margin:10px;" width="125px" 
 alt="Meshery - the Service Mesh Management Plane" align="left" /></a>
 <a href="https://meshery.io">Meshery</a> is the multi-service mesh management plane offering lifecycle management of more types of service meshes than any other tool available today. Meshery facilitates adopting, configuring, operating and managing performance of different service meshes and incorporates the collection and display of metrics from applications running on top of any service mesh. 
@@ -44,7 +44,7 @@ alt="Meshery - the Service Mesh Management Plane" align="left" /></a>
 Our projects are community-built and welcome collaboration. 👍 Be sure to see the <a href="https://docs.google.com/document/d/17OPtDE_rdnPQxmk2Kauhm3GwXF1R5dZ3Cj8qZLKdo5E/edit">Layer5 Community Welcome Guide</a> for a tour of resources available to you and jump into our <a href="http://slack.layer5.io">Slack</a>!
 
 <p style="clear:both;">
-<a href ="https://layer5.io/community/meshmates"><img alt="MeshMates" src=".github/readme/images/Layer5-MeshMentors-1.png" style="margin-right:10px; margin-bottom:15px;" width="28%" align="left"/></a>
+<a href ="https://layer5.io/community/meshmates"><img alt="MeshMates" src="https://raw.githubusercontent.com/meshery/meshery-cilium/master/.github/readme/images/Layer5-MeshMentors-1.png" style="margin-right:10px; margin-bottom:15px;" width="28%" align="left"/></a>
 <h3>Find your MeshMate</h3>
 
 <p>MeshMates are experienced Layer5 community members, who will help you learn your way around, discover live projects and expand your community network. 
