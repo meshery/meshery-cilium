@@ -43,7 +43,7 @@ jobs:
     needs: SetPatternfile
     uses: meshery/meshery/.github/workflows/testadapters.yaml@master
     with:
-      expected_pods: cilium, cilium-operator, cilium-operator
+      expected_pods: cilium
       expected_pods_namespaces: kube-system, kube-system, kube-system
       deployment_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-deployment.yaml
       service_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-service.yaml
