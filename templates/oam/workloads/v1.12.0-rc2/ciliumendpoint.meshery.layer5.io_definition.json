@@ -1,0 +1,20 @@
+{
+ "kind": "WorkloadDefinition",
+ "apiVersion": "core.oam.dev/v1alpha1",
+ "metadata": {
+  "name": "CiliumEndpoint",
+  "creationTimestamp": null
+ },
+ "spec": {
+  "definitionRef": {
+   "name": "ciliumendpoint.meshery.layer5.io"
+  },
+  "metadata": {
+   "@type": "pattern.meshery.io/mesh/workload",
+   "k8sAPIVersion": "cilium.io/v2",
+   "k8sKind": "CiliumEndpoint",
+   "meshName": "CILIUM_SERVICE_MESH",
+   "meshVersion": "v1.12.0-rc2"
+  }
+ }
+}
