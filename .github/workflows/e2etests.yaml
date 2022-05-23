@@ -41,10 +41,11 @@ jobs:
 
   TestCilium:
     needs: SetPatternfile
-    uses: meshery/meshery/.github/workflows/testadapters.yaml@master
+    uses: meshery/meshery/.github/workflows/test_adapters.yaml@master
     with:
-      expected_pods: cilium
-      expected_pods_namespaces: kube-system, kube-system, kube-system
+      expected_resources: cilium
+      expected_resources_types: pod
+      expected_resources_namespaces: kube-system, kube-system, kube-system
       deployment_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-deployment.yaml
       service_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-service.yaml
       adapter_name: cilium
@@ -102,9 +103,9 @@ jobs:
           service-mesh: Cilium
           service-mesh-version: $(jq '.metadata.service_mesh_version' data.json)
           tests:
-            cilium: $(jq '.pods_status."cilium"' data.json)
-            cilium-operator: $(jq '.pods_status."cilium-operator"' data.json)
-            cilium-operator:  $(jq '.pods_status."cilium-operator"' data.json)
+            pod/cilium: $(jq '.resources_status."pod/cilium"' data.json)
+            pod/cilium-operator: $(jq '.resources_status."pod/cilium-operator"' data.json)
+            pod/cilium-operator:  $(jq '.resources_status."pod/cilium-operator"' data.json)
           overall-status: $(jq '."overall-status"' data.json)
           ---" >  test.md
           mv test.md $filename.md
