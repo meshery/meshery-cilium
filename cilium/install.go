@@ -29,6 +29,7 @@ import (
 	"path"
 	"runtime"
 	"strings"
+	"sync"
 
 	"github.com/google/go-github/github"
 	"github.com/layer5io/meshery-adapter-library/adapter"
@@ -39,10 +40,10 @@ import (
 
 const (
 	platform = runtime.GOOS
-	arch = runtime.GOARCH
+	arch     = runtime.GOARCH
 )
 
-func (h *Handler) installCilium(del bool, version, ns string) (string, error) {
+func (h *Handler) installCilium(del bool, version, ns string, kubeconfigs []string) (string, error) {
 	h.Log.Debug(fmt.Sprintf("Requested install of version: %s", version))
 	h.Log.Debug(fmt.Sprintf("Requested action is delete: %v", del))
 	h.Log.Debug(fmt.Sprintf("Requested action is in namespace: %s", ns))
@@ -58,10 +59,10 @@ func (h *Handler) installCilium(del bool, version, ns string) (string, error) {
 	}
 
 	h.Log.Info("Installing...")
-	err = h.applyHelmChart(del, version, ns)
+	err = h.applyHelmChart(del, version, ns, kubeconfigs)
 	if err != nil {
 		h.Log.Error(ErrInstallCilium((err)))
-		
+
 		err = h.runCiliumCliCmd(ns, del)
 		if err != nil {
 			return st, ErrInstallCilium(err)
@@ -76,8 +77,7 @@ func (h *Handler) installCilium(del bool, version, ns string) (string, error) {
 	return st, nil
 }
 
-func (h *Handler) applyHelmChart(del bool, version, namespace string) error {
-	kClient := h.MesheryKubeclient
+func (h *Handler) applyHelmChart(del bool, version, namespace string, kubeconfigs []string) error {
 
 	repo := "https://helm.cilium.io/"
 	chart := "cilium"
@@ -87,17 +87,39 @@ func (h *Handler) applyHelmChart(del bool, version, namespace string) error {
 	} else {
 		act = mesherykube.INSTALL
 	}
-	return kClient.ApplyHelmChart(mesherykube.ApplyHelmChartConfig{
-		ChartLocation: mesherykube.HelmChartLocation{
-			Repository: repo,
-			Chart:      chart,
-			Version:    version,
-		},
-		Namespace:       "kube-system",
-		Action:          act,
-		CreateNamespace: true,
-		ReleaseName:     chart,
-	})
+	var errs []error
+	var wg sync.WaitGroup
+	for _, k8sconfig := range kubeconfigs {
+		wg.Add(1)
+		go func(k8sconfig string) {
+			defer wg.Done()
+			kClient, err := mesherykube.New([]byte(k8sconfig))
+			if err != nil {
+				errs = append(errs, err)
+				return
+			}
+			err = kClient.ApplyHelmChart(mesherykube.ApplyHelmChartConfig{
+				ChartLocation: mesherykube.HelmChartLocation{
+					Repository: repo,
+					Chart:      chart,
+					Version:    version,
+				},
+				Namespace:       "kube-system",
+				Action:          act,
+				CreateNamespace: true,
+				ReleaseName:     chart,
+			})
+			if err != nil {
+				errs = append(errs, err)
+				return
+			}
+		}(k8sconfig)
+	}
+	wg.Wait()
+	if len(errs) != 0 {
+		return mergeErrors(errs)
+	}
+	return nil
 }
 
 func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
@@ -107,7 +129,7 @@ func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
 	)
 
 	version, err := getReleaseTag()
-	if (err != nil) {
+	if err != nil {
 		return ErrGettingRelease(err)
 	}
 
@@ -126,7 +148,7 @@ func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
 	command.Stdout = &out
 	command.Stderr = &er
 	err = command.Run()
-	if err != nil {        
+	if err != nil {
 		return ErrRunExecutable(err)
 	}
 
@@ -142,7 +164,7 @@ func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
 // in the root config path
 func (h *Handler) getExecutable(release string) (string, error) {
 	const binaryName = "cilium"
-	alternateBinaryName := generatePlatformSpecificBinaryName("cilium-" , platform)
+	alternateBinaryName := generatePlatformSpecificBinaryName("cilium-", platform)
 
 	// Look for the executable in the path
 	h.Log.Info("Looking for cilium in the path...")
@@ -171,10 +193,10 @@ func (h *Handler) getExecutable(release string) (string, error) {
 		return "", ErrDownloadingTar(err)
 	}
 	err = extractTar(res, binPath)
-	
+
 	// Install the binary
 	h.Log.Info("Installing...")
-	
+
 	// Move binary to the right location
 	// err = os.Rename(path.Join(downloadLocation, binaryName), path.Join(binPath, "cilium"))
 	if err != nil {
@@ -207,7 +229,6 @@ func downloadTar(release string) (*http.Response, error) {
 	if resp.StatusCode != http.StatusOK {
 		return nil, ErrDownloadingTar(fmt.Errorf("bad status: %s", resp.Status))
 	}
-	
 
 	return resp, nil
 }
@@ -216,7 +237,7 @@ func getReleaseTag() (string, error) {
 	client := github.NewClient(nil)
 
 	tags, _, err := client.Repositories.ListTags(context.Background(), "cilium", "cilium-cli", nil)
-	
+
 	if err != nil {
 		return "", err
 	}
@@ -244,7 +265,6 @@ func extractTar(res *http.Response, location string) error {
 			return ErrUnpackingTar(err)
 		}
 	}
-	
 
 	return nil
 }
@@ -298,7 +318,6 @@ func tarxzf(location string, stream io.Reader) error {
 					return ErrInstallBinary(err)
 				}
 			}
-			
 
 		default:
 			return ErrTarXZF(err)
@@ -307,7 +326,6 @@ func tarxzf(location string, stream io.Reader) error {
 
 	return nil
 }
-
 
 func unzip(location string, zippedContent io.Reader) error {
 	// Keep file in memory: Approx size ~ 50MB
@@ -372,7 +390,6 @@ func unzip(location string, zippedContent io.Reader) error {
 
 	return nil
 }
-
 
 func generatePlatformSpecificBinaryName(binName, platform string) string {
 	if platform == "windows" && !strings.HasSuffix(binName, ".exe") {

@@ -25,7 +25,9 @@ import (
 	internalconfig "github.com/layer5io/meshery-cilium/internal/config"
 	meshkitCfg "github.com/layer5io/meshkit/config"
 	"github.com/layer5io/meshkit/logger"
+	"github.com/layer5io/meshkit/models"
 	"github.com/layer5io/meshkit/models/oam/core/v1alpha1"
+	"gopkg.in/yaml.v2"
 )
 
 // Handler instance for this adapter
@@ -44,10 +46,61 @@ func New(config meshkitCfg.Handler, log logger.Handler, kc meshkitCfg.Handler) a
 	}
 }
 
+//CreateKubeconfigs creates and writes passed kubeconfig onto the filesystem
+func (h *Handler) CreateKubeconfigs(kubeconfigs []string) error {
+	var errs = make([]error, 0)
+	for _, kubeconfig := range kubeconfigs {
+		kconfig := models.Kubeconfig{}
+		err := yaml.Unmarshal([]byte(kubeconfig), &kconfig)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+
+		// To have control over what exactly to take in on kubeconfig
+		h.KubeconfigHandler.SetKey("kind", kconfig.Kind)
+		h.KubeconfigHandler.SetKey("apiVersion", kconfig.APIVersion)
+		h.KubeconfigHandler.SetKey("current-context", kconfig.CurrentContext)
+		err = h.KubeconfigHandler.SetObject("preferences", kconfig.Preferences)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+
+		err = h.KubeconfigHandler.SetObject("clusters", kconfig.Clusters)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+
+		err = h.KubeconfigHandler.SetObject("users", kconfig.Users)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+
+		err = h.KubeconfigHandler.SetObject("contexts", kconfig.Contexts)
+		if err != nil {
+			errs = append(errs, err)
+			continue
+		}
+	}
+	if len(errs) == 0 {
+		return nil
+	}
+	return mergeErrors(errs)
+}
+
 // ApplyOperation function contains the operation handlers
-func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationRequest) error {
+func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationRequest, hchan *chan interface{}) error {
+	err := h.CreateKubeconfigs(request.K8sConfigs)
+	if err != nil {
+		return err
+	}
+	h.SetChannel(hchan)
+	kubeconfigs := request.K8sConfigs
 	operations := make(adapter.Operations)
-	err := h.Config.GetObject(adapter.OperationsKey, &operations)
+	err = h.Config.GetObject(adapter.OperationsKey, &operations)
 	if err != nil {
 		return err
 	}
@@ -63,7 +116,7 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 	case internalconfig.CiliumOperation:
 		go func(hh *Handler, ee *adapter.Event) {
 			version := string(operations[request.OperationName].Versions[len(operations[request.OperationName].Versions)-1])
-			stat, err := hh.installCilium(request.IsDeleteOperation, version, request.Namespace)
+			stat, err := hh.installCilium(request.IsDeleteOperation, version, request.Namespace, kubeconfigs)
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s Cilium service mesh", stat)
 				e.Details = err.Error()
@@ -81,7 +134,7 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 		common.EmojiVotoOperation:
 		go func(hh *Handler, ee *adapter.Event) {
 			appName := operations[request.OperationName].AdditionalProperties[common.ServiceName]
-			stat, err := hh.installSampleApp(request.IsDeleteOperation, request.Namespace, operations[request.OperationName].Templates)
+			stat, err := hh.installSampleApp(request.IsDeleteOperation, request.Namespace, operations[request.OperationName].Templates, kubeconfigs)
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s %s application", stat, appName)
 				e.Details = err.Error()
@@ -103,6 +156,7 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 				Labels: map[string]string{
 					"cilium.io/monitored-by": "cilium",
 				},
+				Kubeconfigs: kubeconfigs,
 				Annotations: make(map[string]string),
 			})
 			if err != nil {
@@ -122,7 +176,13 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 }
 
 // ProcessOAM will handles the grpc invocation for handling OAM objects
-func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest) (string, error) {
+func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest, hchan *chan interface{}) (string, error) {
+	err := h.CreateKubeconfigs(oamReq.K8sConfigs)
+	if err != nil {
+		return "", err
+	}
+	h.SetChannel(hchan)
+	kubeconfigs := oamReq.K8sConfigs
 	var comps []v1alpha1.Component
 	for _, acomp := range oamReq.OamComps {
 		comp, err := oam.ParseApplicationComponent(acomp)
@@ -142,13 +202,13 @@ func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest) (st
 	// If operation is delete then first HandleConfiguration and then handle the deployment
 	if oamReq.DeleteOp {
 		// Process configuration
-		msg2, err := h.HandleApplicationConfiguration(config, oamReq.DeleteOp)
+		msg2, err := h.HandleApplicationConfiguration(config, oamReq.DeleteOp, kubeconfigs)
 		if err != nil {
 			return msg2, ErrProcessOAM(err)
 		}
 
 		// Process components
-		msg1, err := h.HandleComponents(comps, oamReq.DeleteOp)
+		msg1, err := h.HandleComponents(comps, oamReq.DeleteOp, kubeconfigs)
 		if err != nil {
 			return msg1 + "\n" + msg2, ErrProcessOAM(err)
 		}
@@ -157,13 +217,13 @@ func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest) (st
 	}
 
 	// Process components
-	msg1, err := h.HandleComponents(comps, oamReq.DeleteOp)
+	msg1, err := h.HandleComponents(comps, oamReq.DeleteOp, kubeconfigs)
 	if err != nil {
 		return msg1, ErrProcessOAM(err)
 	}
 
 	// Process configuration
-	msg2, err := h.HandleApplicationConfiguration(config, oamReq.DeleteOp)
+	msg2, err := h.HandleApplicationConfiguration(config, oamReq.DeleteOp, kubeconfigs)
 	if err != nil {
 		return msg1 + "\n" + msg2, ErrProcessOAM(err)
 	}
