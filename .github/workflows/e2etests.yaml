@@ -45,7 +45,7 @@ jobs:
     with:
       expected_resources: cilium
       expected_resources_types: pod
-      expected_resources_namespaces: kube-system, kube-system, kube-system
+      expected_resources_namespaces: kube-system
       deployment_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-deployment.yaml
       service_url: https://raw.githubusercontent.com/meshery/meshery/master/install/deployment_yamls/k8s/meshery-cilium-service.yaml
       adapter_name: cilium
