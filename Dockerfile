@@ -20,5 +20,4 @@ ENV MESHERY_SERVER="http://meshery:9081"
 WORKDIR /
 COPY templates/ ./templates
 COPY --from=build-env /github.com/meshery/meshery-cilium/meshery-cilium .
-COPY --from=jsonschema-util /kubeopenapi-jsonschema /root/.meshery/bin/kubeopenapi-jsonschema
 ENTRYPOINT ["./meshery-cilium"]
