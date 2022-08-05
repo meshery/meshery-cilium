@@ -71,7 +71,11 @@ func handleComponentCiliumMesh(h *Handler, comp v1alpha1.Component, isDel bool, 
 	// Get the Cilium version from the settings
 	// we are sure that the version of Cilium would be present
 	// because the configuration is already validated against the schema
-	version := comp.Spec.Settings["version"].(string)
+	version := comp.Spec.Version
+	if version == "" {
+		return "", fmt.Errorf("pass valid version inside service for Cilium installation")
+	}
+	//TODO: When no version is passed in service, use the latest Cilium version
 
 	msg, err := h.installCilium(isDel, version, comp.Namespace, kubeconfigs)
 	if err != nil {

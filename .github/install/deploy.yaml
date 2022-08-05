@@ -3,5 +3,5 @@ services:
   cilium:
     type: CiliumMesh
     namespace: kube-system
-    settings:
-      version: #will be filled dynamically in workflow
+    version: #will be filled dynamically in workflow
+      
