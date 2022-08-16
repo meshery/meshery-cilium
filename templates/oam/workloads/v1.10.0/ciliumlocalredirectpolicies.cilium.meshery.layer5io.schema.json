@@ -255,5 +255,6 @@
     "metadata"
   ],
   "type": "object",
+  "title": "Cilium Local Redirect Policies",
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
