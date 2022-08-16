@@ -3557,7 +3557,7 @@
     "metadata"
   ],
   "type": "object",
-  "title": "Cilium Clusterwide Network Policy",
+  "title": "Cilium Clusterwide Network Policies",
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
