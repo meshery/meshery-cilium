@@ -50,6 +50,7 @@
     "metadata"
   ],
   "type": "object",
+  "title": "Cilium External Workload",
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 

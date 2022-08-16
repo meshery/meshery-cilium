@@ -556,6 +556,7 @@
     "spec"
   ],
   "type": "object",
+  "title": "Cilium Nodes",
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 

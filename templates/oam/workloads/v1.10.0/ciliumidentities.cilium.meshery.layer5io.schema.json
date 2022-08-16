@@ -26,6 +26,7 @@
     "security-labels"
   ],
   "type": "object",
+  "title": "Cilium Identities",
   "$schema": "http://json-schema.org/draft-04/schema#"
 }
 
