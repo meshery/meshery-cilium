@@ -24,6 +24,7 @@ import (
 	"github.com/layer5io/meshery-cilium/cilium/oam"
 	internalconfig "github.com/layer5io/meshery-cilium/internal/config"
 	meshkitCfg "github.com/layer5io/meshkit/config"
+	"github.com/layer5io/meshkit/errors"
 	"github.com/layer5io/meshkit/logger"
 	"github.com/layer5io/meshkit/models"
 	"github.com/layer5io/meshkit/models/oam/core/v1alpha1"
@@ -109,6 +110,8 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 		Operationid: request.OperationID,
 		Summary:     status.Deploying,
 		Details:     "Operation is not supported",
+		Component:   internalconfig.ServerDefaults["type"],
+		ComponentName: internalconfig.ServerDefaults["name"],
 	}
 
 	//deployment
@@ -120,6 +123,9 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s Cilium service mesh", stat)
 				e.Details = err.Error()
+				e.ErrorCode = errors.GetCode(err)
+				e.ProbableCause = errors.GetCause(err)
+				e.SuggestedRemediation = errors.GetRemedy(err)
 				hh.StreamErr(e, err)
 				return
 			}
@@ -138,6 +144,9 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s %s application", stat, appName)
 				e.Details = err.Error()
+				e.ErrorCode = errors.GetCode(err)
+				e.ProbableCause = errors.GetCause(err)
+				e.SuggestedRemediation = errors.GetRemedy(err)
 				hh.StreamErr(e, err)
 				return
 			}
@@ -162,6 +171,9 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 			if err != nil {
 				e.Summary = fmt.Sprintf("Error while %s %s test", status.Running, name)
 				e.Details = err.Error()
+				e.ErrorCode = errors.GetCode(err)
+				e.ProbableCause = errors.GetCause(err)
+				e.SuggestedRemediation = errors.GetRemedy(err)
 				hh.StreamErr(e, err)
 				return
 			}
@@ -170,7 +182,11 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 			hh.StreamInfo(e)
 		}(h, e)
 	default:
+		e.ErrorCode = errors.GetCode(ErrOpInvalid)
+		e.ProbableCause = errors.GetCause(ErrOpInvalid)
+		e.SuggestedRemediation = errors.GetRemedy(ErrOpInvalid)
 		h.StreamErr(e, ErrOpInvalid)
+		
 	}
 	return nil
 }
