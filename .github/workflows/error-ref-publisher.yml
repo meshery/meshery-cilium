@@ -19,7 +19,7 @@ jobs:
           ref: 'master'
 
       - name: Setup Go
-        uses: actions/setup-go@v3.0.0
+        uses: actions/setup-go@v3
         with:
           go-version: ${{ secrets.GO_VERSION }}
 

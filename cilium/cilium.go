@@ -48,7 +48,7 @@ func New(config meshkitCfg.Handler, log logger.Handler, kc meshkitCfg.Handler) a
 	}
 }
 
-//CreateKubeconfigs creates and writes passed kubeconfig onto the filesystem
+// CreateKubeconfigs creates and writes passed kubeconfig onto the filesystem
 func (h *Handler) CreateKubeconfigs(kubeconfigs []string) error {
 	var errs = make([]error, 0)
 	for _, kubeconfig := range kubeconfigs {
@@ -108,10 +108,10 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 	}
 
 	e := &meshes.EventsResponse{
-		OperationId: request.OperationID,
-		Summary:     status.Deploying,
-		Details:     "Operation is not supported",
-		Component:   internalconfig.ServerDefaults["type"],
+		OperationId:   request.OperationID,
+		Summary:       status.Deploying,
+		Details:       "Operation is not supported",
+		Component:     internalconfig.ServerDefaults["type"],
 		ComponentName: internalconfig.ServerDefaults["name"],
 	}
 
@@ -232,7 +232,7 @@ func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest, hch
 	return msg1 + "\n" + msg2, nil
 }
 
-func(h *Handler) streamErr(summary string, e *meshes.EventsResponse, err error) {
+func (h *Handler) streamErr(summary string, e *meshes.EventsResponse, err error) {
 	e.Summary = summary
 	e.Details = err.Error()
 	e.ErrorCode = errors.GetCode(err)
