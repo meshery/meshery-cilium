@@ -1,0 +1,20 @@
+{
+ "kind": "WorkloadDefinition",
+ "apiVersion": "core.oam.dev/v1alpha1",
+ "metadata": {
+  "name": "CiliumClusterwideEnvoyConfig",
+  "creationTimestamp": null
+ },
+ "spec": {
+  "definitionRef": {
+   "name": "ciliumclusterwideenvoyconfig.meshery.layer5.io"
+  },
+  "metadata": {
+   "@type": "pattern.meshery.io/mesh/workload",
+   "k8sAPIVersion": "cilium.io/v2",
+   "k8sKind": "CiliumClusterwideEnvoyConfig",
+   "meshName": "CILIUM_SERVICE_MESH",
+   "meshVersion": "v1.13.0-rc1"
+  }
+ }
+}

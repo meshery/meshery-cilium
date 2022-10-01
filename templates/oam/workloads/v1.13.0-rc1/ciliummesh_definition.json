@@ -1,0 +1,1 @@
+{"kind":"WorkloadDefinition","apiVersion":"core.oam.dev/v1alpha1","metadata":{"name":"CiliumMesh","creationTimestamp":null},"spec":{"definitionRef":{"name":"ciliummesh.meshery.layer5.io"},"metadata":{"@type":"pattern.meshery.io/core","version":"v1.13.0-rc1"}}}
