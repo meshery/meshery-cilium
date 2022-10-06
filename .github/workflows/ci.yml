@@ -102,7 +102,7 @@ jobs:
       GO111MODULE: on
     steps:
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
           fetch-depth: 1
       - name: Run Gosec Security Scanner
