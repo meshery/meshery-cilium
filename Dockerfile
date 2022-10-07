@@ -1,4 +1,4 @@
-FROM golang:1.17 as build-env
+FROM golang:1.19 as build-env
 ARG VERSION
 ARG GIT_COMMITSHA
 

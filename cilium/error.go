@@ -86,7 +86,7 @@ var (
 
 	// ErrOpInvalid represents the errors which are generated
 	// when an invalid operation is requested
-	ErrOpInvalid = errors.New(ErrOpInvalidCode, errors.Alert, []string{"Invalid operation"}, []string{"Cilium adapter recived an invalid operation from the meshey server"}, []string{"The operation is not supported by the adapter", "Invalid operation name"}, []string{"Check if the operation name is valid and supported by the adapter"})
+	ErrOpInvalid = errors.New(ErrOpInvalidCode, errors.Alert, []string{"Invalid operation"}, []string{"Cilium adapter received an invalid operation from the meshey server"}, []string{"The operation is not supported by the adapter", "Invalid operation name"}, []string{"Check if the operation name is valid and supported by the adapter"})
 
 	// ErrNilClient represents the error which is
 	// generated when kubernetes client is nil
@@ -94,11 +94,11 @@ var (
 
 	// ErrParseOAMComponent represents the error which is
 	// generated during the OAM component parsing
-	ErrParseOAMComponent = errors.New(ErrParseOAMComponentCode, errors.Alert, []string{"error parsing the component"}, []string{"Error occured while prasing application component in the OAM request made"}, []string{"Invalid OAM component passed in OAM request"}, []string{"Check if your request has vaild OAM components"})
+	ErrParseOAMComponent = errors.New(ErrParseOAMComponentCode, errors.Alert, []string{"error parsing the component"}, []string{"Error occurred while prasing application component in the OAM request made"}, []string{"Invalid OAM component passed in OAM request"}, []string{"Check if your request has vaild OAM components"})
 
 	// ErrParseOAMConfig represents the error which is
 	// generated during the OAM configuration parsing
-	ErrParseOAMConfig = errors.New(ErrParseOAMConfigCode, errors.Alert, []string{"error parsing the configuration"}, []string{"Error occured while prasing component config in the OAM request made"}, []string{"Invalid OAM config passed in OAM request"}, []string{"Check if your request has vaild OAM config"})
+	ErrParseOAMConfig = errors.New(ErrParseOAMConfigCode, errors.Alert, []string{"error parsing the configuration"}, []string{"Error occurred while prasing component config in the OAM request made"}, []string{"Invalid OAM config passed in OAM request"}, []string{"Check if your request has vaild OAM config"})
 
 	// ErrGetLatestReleaseCode represents the error which is
 	// generated when the latest stable version could not
@@ -128,7 +128,7 @@ var (
 
 // ErrInstallCilium is the error for install mesh
 func ErrInstallCilium(err error) error {
-	return errors.New(ErrInstallCiliumCode, errors.Alert, []string{"Error with Cilium operation"}, []string{"Error occured while installing Cilium mesh through Cilium", err.Error()}, []string{}, []string{})
+	return errors.New(ErrInstallCiliumCode, errors.Alert, []string{"Error with Cilium operation"}, []string{"Error occurred while installing Cilium mesh through Cilium", err.Error()}, []string{}, []string{})
 }
 
 // ErrTarXZF is the error for unzipping the file
@@ -148,7 +148,7 @@ func ErrRunCiliumCmd(err error, des string) error {
 
 // ErrDownloadBinary is the error while downloading Cilium binary
 func ErrDownloadBinary(err error) error {
-	return errors.New(ErrDownloadBinaryCode, errors.Alert, []string{"Error downloading Cilium binary"}, []string{err.Error(), "Error occured while download Cilium binary from its github release"}, []string{"Checkout https://docs.github.com/en/rest/reference/repos#releases for more details"}, []string{})
+	return errors.New(ErrDownloadBinaryCode, errors.Alert, []string{"Error downloading Cilium binary"}, []string{err.Error(), "Error occurred while download Cilium binary from its github release"}, []string{"Checkout https://docs.github.com/en/rest/reference/repos#releases for more details"}, []string{})
 }
 
 // ErrInstallBinary is the error while downloading Cilium binary
@@ -158,17 +158,17 @@ func ErrInstallBinary(err error) error {
 
 // ErrSampleApp is the error for streaming event
 func ErrSampleApp(err error) error {
-	return errors.New(ErrSampleAppCode, errors.Alert, []string{"Error with sample app operation"}, []string{err.Error(), "Error occured while trying to install a sample application using manifests"}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reconnect your adapter to Meshery Server to refresh the kubeclient"})
+	return errors.New(ErrSampleAppCode, errors.Alert, []string{"Error with sample app operation"}, []string{err.Error(), "Error occurred while trying to install a sample application using manifests"}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Reconnect your adapter to Meshery Server to refresh the kubeclient"})
 }
 
 // ErrCustomOperation is the error for streaming event
 func ErrCustomOperation(err error) error {
-	return errors.New(ErrCustomOperationCode, errors.Alert, []string{"Error with custom operation"}, []string{"Error occured while applying custom manifest to the cluster", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubconfig in the Meshery Server and reconnect the adapter"})
+	return errors.New(ErrCustomOperationCode, errors.Alert, []string{"Error with custom operation"}, []string{"Error occurred while applying custom manifest to the cluster", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubconfig in the Meshery Server and reconnect the adapter"})
 }
 
 // ErrCreatingNS is the error while creating the namespace
 func ErrCreatingNS(err error) error {
-	return errors.New(ErrCreatingNSCode, errors.Alert, []string{"Error creating namespace"}, []string{"Error occured while applying manifest to create a namespace", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubeconfig in the Meshery Server and reconnect the adapter"})
+	return errors.New(ErrCreatingNSCode, errors.Alert, []string{"Error creating namespace"}, []string{"Error occurred while applying manifest to create a namespace", err.Error()}, []string{"Invalid kubeclient config", "Invalid manifest"}, []string{"Upload the kubeconfig in the Meshery Server and reconnect the adapter"})
 }
 
 // ErrRunExecutable is the error while running an executable
@@ -178,7 +178,7 @@ func ErrRunExecutable(err error) error {
 
 // ErrApplyHelmChart is the error for applying helm chart
 func ErrApplyHelmChart(err error) error {
-	return errors.New(ErrApplyHelmChartCode, errors.Alert, []string{"Error occured while applying Helm Chart"}, []string{err.Error()}, []string{}, []string{})
+	return errors.New(ErrApplyHelmChartCode, errors.Alert, []string{"Error occurred while applying Helm Chart"}, []string{err.Error()}, []string{}, []string{})
 }
 
 // ErrParseCiliumCoreComponent is the error when Cilium core component manifest parsing fails
@@ -208,8 +208,7 @@ func ErrGetLatestRelease(err error) error {
 
 // ErrLoadNamespace is the occurend while applying namespace
 func ErrLoadNamespace(err error, s string) error {
-	return errors.New(ErrLoadNamespaceCode, errors.Alert, []string{"Error occured while applying namespace "}, []string{err.Error()}, []string{"Trying to access a namespace which is not available"}, []string{"Verify presence of namespace. Confirm Meshery ServiceAccount permissions"})
-
+	return errors.New(ErrLoadNamespaceCode, errors.Alert, []string{"Error occurred while applying namespace "}, []string{err.Error()}, []string{"Trying to access a namespace which is not available"}, []string{"Verify presence of namespace. Confirm Meshery ServiceAccount permissions"})
 }
 
 // ErrMakingBinExecutable occurs when cilium cli binary couldn't be made
@@ -220,7 +219,7 @@ func ErrMakingBinExecutable(err error) error {
 
 // ErrUnpackingTar is the error when tar unpack fails
 func ErrUnpackingTar(err error) error {
-	return errors.New(ErrUnpackingTarCode, errors.Alert, []string{"Error occured while unpacking tar"}, []string{err.Error()}, []string{"The gzip might be corrupt"}, []string{"Please retry operation."})
+	return errors.New(ErrUnpackingTarCode, errors.Alert, []string{"Error occurred while unpacking tar"}, []string{err.Error()}, []string{"The gzip might be corrupt"}, []string{"Please retry operation."})
 }
 
 // ErrUnzipFile is the error for unzipping the file
@@ -230,11 +229,10 @@ func ErrUnzipFile(err error) error {
 
 // ErrDownloadingTar is the error when tar download fails
 func ErrDownloadingTar(err error) error {
-	return errors.New(ErrDownloadingTarCode, errors.Alert, []string{"Error occured while downloading Cilium tar"}, []string{err.Error()}, []string{"Error occured while download cilium tar from its release url"}, []string{"Checkout https://github.com/cilium/cilium-cli/releases/download/<release>/cilium-<platform>-<arch>.tar.gz for more details"})
+	return errors.New(ErrDownloadingTarCode, errors.Alert, []string{"Error occurred while downloading Cilium tar"}, []string{err.Error()}, []string{"Error occurred while download cilium tar from its release url"}, []string{"Checkout https://github.com/cilium/cilium-cli/releases/download/<release>/cilium-<platform>-<arch>.tar.gz for more details"})
 }
 
 // ErrGettingRelease is the error when getting release tag fails
 func ErrGettingRelease(err error) error {
 	return errors.New(ErrGettingReleaseCode, errors.Alert, []string{"Could not get latest version"}, []string{err.Error()}, []string{"Latest version could not be found at the specified url"}, []string{"Verify network connectivity.", "Ensure github.com is reachable.", "Try retrying the operation."})
 }
-

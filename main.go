@@ -4,7 +4,7 @@
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
 //
-//     http://www.apache.org/licenses/LICENSE-2.0
+//	http://www.apache.org/licenses/LICENSE-2.0
 //
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
@@ -17,18 +17,18 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"strings"
 	"path/filepath"
+	"strings"
 	"time"
 
 	"github.com/layer5io/meshery-adapter-library/adapter"
 	"github.com/layer5io/meshery-adapter-library/api/grpc"
+	"github.com/layer5io/meshery-cilium/build"
 	"github.com/layer5io/meshery-cilium/cilium"
 	"github.com/layer5io/meshery-cilium/cilium/oam"
 	"github.com/layer5io/meshery-cilium/internal/config"
 	configprovider "github.com/layer5io/meshkit/config/provider"
 	"github.com/layer5io/meshkit/logger"
-	"github.com/layer5io/meshery-cilium/build"
 )
 
 var (
@@ -167,7 +167,6 @@ func registerDynamicCapabilities(port string, log logger.Handler) {
 		<-ticker.C
 		registerWorkloads(port, log)
 	}
-
 }
 func registerWorkloads(port string, log logger.Handler) {
 	version := build.DefaultVersion

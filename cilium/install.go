@@ -22,7 +22,6 @@ import (
 	"context"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"os/exec"
@@ -78,7 +77,6 @@ func (h *Handler) installCilium(del bool, version, ns string, kubeconfigs []stri
 }
 
 func (h *Handler) applyHelmChart(del bool, version, namespace string, kubeconfigs []string) error {
-
 	repo := "https://helm.cilium.io/"
 	chart := "cilium"
 	var act mesherykube.HelmChartAction
@@ -330,7 +328,7 @@ func tarxzf(location string, stream io.Reader) error {
 func unzip(location string, zippedContent io.Reader) error {
 	// Keep file in memory: Approx size ~ 50MB
 	// TODO: Find a better approach
-	zipped, err := ioutil.ReadAll(zippedContent)
+	zipped, err := io.ReadAll(zippedContent)
 	if err != nil {
 		return ErrUnzipFile(err)
 	}

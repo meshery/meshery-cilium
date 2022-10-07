@@ -64,7 +64,6 @@ func (h *Handler) HandleApplicationConfiguration(config v1alpha1.Configuration, 
 	}
 
 	return mergeMsgs(msgs), nil
-
 }
 
 func handleComponentCiliumMesh(h *Handler, comp v1alpha1.Component, isDel bool, kubeconfigs []string) (string, error) {

@@ -51,18 +51,25 @@ jobs:
     steps:
       - 
         name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@master
       - 
         name: Identify Release Values
         if: "${{ github.event.inputs.release-ver}} != 'v' }}"
         run: |
-          echo "GITHUB_REF=${GITHUB_REF}"
           if [[ ${GITHUB_REF} = refs/tags* ]]
           then
             echo RELEASE_CHANNEL=stable >> $GITHUB_ENV
           else
             echo RELEASE_CHANNEL=edge >> $GITHUB_ENV
           fi
+          LATEST_VERSION=$(git ls-remote --tags | tail -1 | cut -f2 | sed 's/refs\/tags\///g') >> $GITHUB_ENV
+          GIT_VERSION=$(git ls-remote --tags | tail -1 | cut -f2 | sed 's/refs\/tags\///g') >> $GITHUB_ENV
+          # GIT_VERSION=$(git describe --tags `git rev-list --tags --max-count=1` --always) 
+          GIT_STRIPPED_VERSION=$(git ls-remote --tags | tail -1 | cut -f2 | sed 's/refs\/tags\///g' | cut -c2-)
+          echo "Release channel determined to be $RELEASE_CHANNEL"
+          echo "GIT_LATEST=$LATEST_VERSION" >> $GITHUB_ENV
+          echo "GIT_VERSION=$GIT_VERSION" >> $GITHUB_ENV
+          echo "GIT_STRIPPED_VERSION=$GIT_STRIPPED_VERSION" >> $GITHUB_ENV          
         shell: bash
 
       -
@@ -84,7 +91,6 @@ jobs:
             type=semver,pattern={{version}},value=${{env.GIT_STRIPPED_VERSION}}
             type=raw,value=${{env.RELEASE_CHANNEL}}-{{tag}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
             type=raw,value=${{env.RELEASE_CHANNEL}}-latest
-            type=raw,value=${{env.RELEASE_CHANNEL}}-${{env.GIT_VERSION}},enable=${{ startsWith(github.ref, 'refs/tags/v') }}
       -
         name: Login to DockerHub
         uses: docker/login-action@v1 
@@ -109,4 +115,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: ${{ secrets.IMAGE_NAME }}  
-          readme-filepath: README.md 
+          readme-filepath: README.md

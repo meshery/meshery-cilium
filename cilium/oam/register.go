@@ -13,10 +13,9 @@ import (
 var (
 	//WorkloadPath will be used by both static and component generation
 	WorkloadPath = filepath.Join(basePath, "templates", "oam", "workloads")
-	basePath, _  = os.Getwd()	
+	basePath, _  = os.Getwd()
 	traitPath    = filepath.Join(basePath, "templates", "oam", "traits")
 )
-
 
 // AvailableVersions denote the component versions available statically
 var AvailableVersions = map[string]bool{}
@@ -128,4 +127,3 @@ func init() {
 	//This is done only to find available versions at startup
 	_, _ = load(WorkloadPath)
 }
-
