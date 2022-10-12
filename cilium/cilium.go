@@ -29,27 +29,29 @@ import (
 	"github.com/layer5io/meshkit/logger"
 	"github.com/layer5io/meshkit/models"
 	"github.com/layer5io/meshkit/models/oam/core/v1alpha1"
+	"github.com/layer5io/meshkit/utils/events"
 	"gopkg.in/yaml.v2"
 )
 
-// Handler instance for this adapter
-type Handler struct {
+// Cilium  represents the Cilium adapter and embeds adapter.Adapter
+type Cilium struct {
 	adapter.Adapter
 }
 
 // New initializes a new handler instance
-func New(config meshkitCfg.Handler, log logger.Handler, kc meshkitCfg.Handler) adapter.Handler {
-	return &Handler{
+func New(c meshkitCfg.Handler, l logger.Handler, kc meshkitCfg.Handler, ev *events.EventStreamer) adapter.Handler {
+	return &Cilium{
 		Adapter: adapter.Adapter{
-			Config:            config,
-			Log:               log,
+			Config:            c,
+			Log:               l,
 			KubeconfigHandler: kc,
+			EventStreamer:     ev,
 		},
 	}
 }
 
 // CreateKubeconfigs creates and writes passed kubeconfig onto the filesystem
-func (h *Handler) CreateKubeconfigs(kubeconfigs []string) error {
+func (h *Cilium) CreateKubeconfigs(kubeconfigs []string) error {
 	var errs = make([]error, 0)
 	for _, kubeconfig := range kubeconfigs {
 		kconfig := models.Kubeconfig{}
@@ -94,13 +96,12 @@ func (h *Handler) CreateKubeconfigs(kubeconfigs []string) error {
 }
 
 // ApplyOperation function contains the operation handlers
-func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationRequest, hchan *chan interface{}) error {
-	err := h.CreateKubeconfigs(request.K8sConfigs)
+func (h *Cilium) ApplyOperation(ctx context.Context, opReq adapter.OperationRequest) error {
+	err := h.CreateKubeconfigs(opReq.K8sConfigs)
 	if err != nil {
 		return err
 	}
-	h.SetChannel(hchan)
-	kubeconfigs := request.K8sConfigs
+	kubeconfigs := opReq.K8sConfigs
 	operations := make(adapter.Operations)
 	err = h.Config.GetObject(adapter.OperationsKey, &operations)
 	if err != nil {
@@ -108,7 +109,7 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 	}
 
 	e := &meshes.EventsResponse{
-		OperationId:   request.OperationID,
+		OperationId:   opReq.OperationID,
 		Summary:       status.Deploying,
 		Details:       "Operation is not supported",
 		Component:     internalconfig.ServerDefaults["type"],
@@ -116,28 +117,32 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 	}
 
 	//deployment
-	switch request.OperationName {
+	switch opReq.OperationName {
 	case internalconfig.CiliumOperation:
-		go func(hh *Handler, ee *meshes.EventsResponse) {
-			version := string(operations[request.OperationName].Versions[len(operations[request.OperationName].Versions)-1])
-			stat, err := hh.installCilium(request.IsDeleteOperation, version, request.Namespace, kubeconfigs)
+		go func(hh *Cilium, ee *meshes.EventsResponse) {
+			version := string(operations[opReq.OperationName].Versions[len(operations[opReq.OperationName].Versions)-1])
+			stat, err := hh.installCilium(opReq.IsDeleteOperation, version, opReq.Namespace, kubeconfigs)
 			if err != nil {
-				summary := fmt.Sprintf("Error while %s Cilium service mesh", stat)
-				hh.streamErr(summary, e, err)
+				ee.Summary = fmt.Sprintf("Error while %s Cilium service mesh", stat)
+				ee.Details = err.Error()
+				ee.ErrorCode = errors.GetCode(err)
+				ee.ProbableCause = errors.GetCause(err)
+				ee.SuggestedRemediation = errors.GetRemedy(err)
+				hh.StreamErr(ee, err)
 				return
 			}
 			ee.Summary = fmt.Sprintf("Cilium service mesh %s successfully", stat)
 			ee.Details = fmt.Sprintf("Cilium service mesh is now %s.", stat)
-			hh.StreamInfo(e)
+			hh.StreamInfo(ee)
 		}(h, e)
 	case
 		common.BookInfoOperation,
 		common.HTTPBinOperation,
 		common.ImageHubOperation,
 		common.EmojiVotoOperation:
-		go func(hh *Handler, ee *meshes.EventsResponse) {
-			appName := operations[request.OperationName].AdditionalProperties[common.ServiceName]
-			stat, err := hh.installSampleApp(request.IsDeleteOperation, request.Namespace, operations[request.OperationName].Templates, kubeconfigs)
+		go func(hh *Cilium, ee *meshes.EventsResponse) {
+			appName := operations[opReq.OperationName].AdditionalProperties[common.ServiceName]
+			stat, err := hh.installSampleApp(opReq.IsDeleteOperation, opReq.Namespace, operations[opReq.OperationName].Templates, kubeconfigs)
 			if err != nil {
 				summary := fmt.Sprintf("Error while %s %s application", stat, appName)
 				hh.streamErr(summary, e, err)
@@ -148,12 +153,12 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 			hh.StreamInfo(e)
 		}(h, e)
 	case common.SmiConformanceOperation:
-		go func(hh *Handler, ee *meshes.EventsResponse) {
-			name := operations[request.OperationName].Description
+		go func(hh *Cilium, ee *meshes.EventsResponse) {
+			name := operations[opReq.OperationName].Description
 			_, err := hh.RunSMITest(adapter.SMITestOptions{
 				Ctx:         context.TODO(),
 				OperationID: ee.OperationId,
-				Manifest:    string(operations[request.OperationName].Templates[0]),
+				Manifest:    string(operations[opReq.OperationName].Templates[0]),
 				Namespace:   "meshery",
 				Labels: map[string]string{
 					"cilium.io/monitored-by": "cilium",
@@ -177,12 +182,11 @@ func (h *Handler) ApplyOperation(ctx context.Context, request adapter.OperationR
 }
 
 // ProcessOAM will handles the grpc invocation for handling OAM objects
-func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest, hchan *chan interface{}) (string, error) {
+func (h *Cilium) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest) (string, error) {
 	err := h.CreateKubeconfigs(oamReq.K8sConfigs)
 	if err != nil {
 		return "", err
 	}
-	h.SetChannel(hchan)
 	kubeconfigs := oamReq.K8sConfigs
 	var comps []v1alpha1.Component
 	for _, acomp := range oamReq.OamComps {
@@ -232,7 +236,7 @@ func (h *Handler) ProcessOAM(ctx context.Context, oamReq adapter.OAMRequest, hch
 	return msg1 + "\n" + msg2, nil
 }
 
-func (h *Handler) streamErr(summary string, e *meshes.EventsResponse, err error) {
+func (h *Cilium) streamErr(summary string, e *meshes.EventsResponse, err error) {
 	e.Summary = summary
 	e.Details = err.Error()
 	e.ErrorCode = errors.GetCode(err)

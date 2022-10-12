@@ -9,10 +9,10 @@ import (
 )
 
 // CompHandler is the type for functions which can handle OAM components
-type CompHandler func(*Handler, v1alpha1.Component, bool, []string) (string, error)
+type CompHandler func(*Cilium, v1alpha1.Component, bool, []string) (string, error)
 
 // HandleComponents handles the processing of OAM components
-func (h *Handler) HandleComponents(comps []v1alpha1.Component, isDel bool, kubeconfigs []string) (string, error) {
+func (h *Cilium) HandleComponents(comps []v1alpha1.Component, isDel bool, kubeconfigs []string) (string, error) {
 	var errs []error
 	var msgs []string
 
@@ -50,7 +50,7 @@ func (h *Handler) HandleComponents(comps []v1alpha1.Component, isDel bool, kubec
 }
 
 // HandleApplicationConfiguration handles the processing of OAM application configuration
-func (h *Handler) HandleApplicationConfiguration(config v1alpha1.Configuration, isDel bool, kubeconfigs []string) (string, error) {
+func (h *Cilium) HandleApplicationConfiguration(config v1alpha1.Configuration, isDel bool, kubeconfigs []string) (string, error) {
 	var errs []error
 	var msgs []string
 	for _, comp := range config.Spec.Components {
@@ -66,7 +66,7 @@ func (h *Handler) HandleApplicationConfiguration(config v1alpha1.Configuration, 
 	return mergeMsgs(msgs), nil
 }
 
-func handleComponentCiliumMesh(h *Handler, comp v1alpha1.Component, isDel bool, kubeconfigs []string) (string, error) {
+func handleComponentCiliumMesh(h *Cilium, comp v1alpha1.Component, isDel bool, kubeconfigs []string) (string, error) {
 	// Get the Cilium version from the settings
 	// we are sure that the version of Cilium would be present
 	// because the configuration is already validated against the schema
@@ -85,7 +85,7 @@ func handleComponentCiliumMesh(h *Handler, comp v1alpha1.Component, isDel bool, 
 }
 
 func handleCiliumCoreComponent(
-	h *Handler,
+	h *Cilium,
 	comp v1alpha1.Component,
 	isDel bool,
 	apiVersion,

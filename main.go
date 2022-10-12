@@ -29,6 +29,7 @@ import (
 	"github.com/layer5io/meshery-cilium/internal/config"
 	configprovider "github.com/layer5io/meshkit/config/provider"
 	"github.com/layer5io/meshkit/logger"
+	"github.com/layer5io/meshkit/utils/events"
 )
 
 var (
@@ -95,13 +96,14 @@ func main() {
 	//      log.Err("Tracing Init Failed", err.Error())
 	//      os.Exit(1)
 	// }
+	ev := events.NewEventStreamer()
 
 	// Initialize Handler intance
-	handler := cilium.New(cfg, log, kubeconfigHandler)
+	handler := cilium.New(cfg, log, kubeconfigHandler, ev)
 	handler = adapter.AddLogger(log, handler)
 
 	service.Handler = handler
-	service.Channel = make(chan interface{}, 10)
+	service.EventStreamer = ev
 	service.StartedAt = time.Now()
 	service.Version = version
 	service.GitSHA = gitsha
