@@ -8,7 +8,7 @@ import (
 	mesherykube "github.com/layer5io/meshkit/utils/kubernetes"
 )
 
-func (h *Handler) installSampleApp(del bool, namespace string, templates []adapter.Template, kubeconfigs []string) (string, error) {
+func (h *Cilium) installSampleApp(del bool, namespace string, templates []adapter.Template, kubeconfigs []string) (string, error) {
 	st := status.Installing
 	if del {
 		st = status.Removing
@@ -22,7 +22,7 @@ func (h *Handler) installSampleApp(del bool, namespace string, templates []adapt
 	return status.Installed, nil
 }
 
-func (h *Handler) applyManifest(contents []byte, isDel bool, namespace string, kubeconfigs []string) error {
+func (h *Cilium) applyManifest(contents []byte, isDel bool, namespace string, kubeconfigs []string) error {
 	var errs []error
 	var wg sync.WaitGroup
 	for _, k8sconfig := range kubeconfigs {

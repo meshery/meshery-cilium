@@ -42,7 +42,7 @@ const (
 	arch     = runtime.GOARCH
 )
 
-func (h *Handler) installCilium(del bool, version, ns string, kubeconfigs []string) (string, error) {
+func (h *Cilium) installCilium(del bool, version, ns string, kubeconfigs []string) (string, error) {
 	h.Log.Debug(fmt.Sprintf("Requested install of version: %s", version))
 	h.Log.Debug(fmt.Sprintf("Requested action is delete: %v", del))
 	h.Log.Debug(fmt.Sprintf("Requested action is in namespace: %s", ns))
@@ -76,7 +76,7 @@ func (h *Handler) installCilium(del bool, version, ns string, kubeconfigs []stri
 	return st, nil
 }
 
-func (h *Handler) applyHelmChart(del bool, version, namespace string, kubeconfigs []string) error {
+func (h *Cilium) applyHelmChart(del bool, version, namespace string, kubeconfigs []string) error {
 	repo := "https://helm.cilium.io/"
 	chart := "cilium"
 	var act mesherykube.HelmChartAction
@@ -120,7 +120,7 @@ func (h *Handler) applyHelmChart(del bool, version, namespace string, kubeconfig
 	return nil
 }
 
-func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
+func (h *Cilium) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
 	var (
 		out bytes.Buffer
 		er  bytes.Buffer
@@ -160,7 +160,7 @@ func (h *Handler) runCiliumCliCmd(namespace string, isDeleteOp bool) error {
 // If it doesn't find the executable in the path then it proceeds
 // to download the binary from github releases and installs it
 // in the root config path
-func (h *Handler) getExecutable(release string) (string, error) {
+func (h *Cilium) getExecutable(release string) (string, error) {
 	const binaryName = "cilium"
 	alternateBinaryName := generatePlatformSpecificBinaryName("cilium-", platform)
 
