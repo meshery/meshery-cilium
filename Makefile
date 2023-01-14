@@ -38,7 +38,7 @@ docker:
 docker-run:
 	(docker rm -f meshery-$(ADAPTER)) || true
 	docker run --name meshery-$(ADAPTER) -d \
-	-p 10000:10000 \
+	-p 10012:10012 \
 	-e DEBUG=true \
 	layer5/meshery-$(ADAPTER):$(RELEASE_CHANNEL)-latest
 
