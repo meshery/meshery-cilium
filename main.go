@@ -162,7 +162,7 @@ func registerCapabilities(port string, log logger.Handler) {
 	}
 	// Register meshmodel components
 	if err := oam.RegisterMeshModelComponents(instanceID, mesheryServerAddress(), serviceAddress(), port); err != nil {
-		log.Error(err)
+		log.Info(err.Error())
 	}
 }
 
