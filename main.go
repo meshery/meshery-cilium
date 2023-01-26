@@ -156,10 +156,6 @@ func registerCapabilities(port string, log logger.Handler) {
 		log.Info(err.Error())
 	}
 	log.Info("Registering static workloads completed")
-	// Register traits
-	if err := oam.RegisterTraits(mesheryServerAddress(), serviceAddress()+":"+port); err != nil {
-		log.Info(err.Error())
-	}
 	// Register meshmodel components
 	if err := oam.RegisterMeshModelComponents(instanceID, mesheryServerAddress(), serviceAddress(), port); err != nil {
 		log.Info(err.Error())
@@ -178,14 +174,13 @@ func registerDynamicCapabilities(port string, log logger.Handler) {
 }
 func registerWorkloads(port string, log logger.Handler) {
 	version := build.DefaultVersion
-	url := build.DefaultURL
 	gm := build.DefaultGenerationMethod
 	// Prechecking to skip comp gen
 	if os.Getenv("FORCE_DYNAMIC_REG") != "true" && oam.AvailableVersions[version] {
 		log.Info("Components available statically for version ", version, ". Skipping dynamic component registeration")
 		return
 	}
-
+	var url string
 	//If a URL is passed from env variable, it will be used for component generation with default method being "using manifests"
 	// In case a helm chart URL is passed, COMP_GEN_METHOD env variable should be set to Helm otherwise the component generation fails
 	if os.Getenv("COMP_GEN_URL") != "" && (os.Getenv("COMP_GEN_METHOD") == "Helm" || os.Getenv("COMP_GEN_METHOD") == "Manifest") {
@@ -196,10 +191,15 @@ func registerWorkloads(port string, log logger.Handler) {
 
 	log.Info("Registering latest workload components for version ", version)
 	for _, crd := range build.CRDNames {
-		crdurl := url + crd
+		var crdurl string
+		if url != "" {
+			crdurl = url
+		} else {
+			crdurl = build.GetCRDURLForVersion(crd, version)
+		}
 		log.Info("Registering ", crdurl)
 		if err := adapter.CreateComponents(adapter.StaticCompConfig{
-			URL:             url,
+			URL:             crdurl,
 			Method:          gm,
 			OAMPath:         build.WorkloadPath,
 			MeshModelPath:   build.MeshModelPath,
@@ -207,8 +207,7 @@ func registerWorkloads(port string, log logger.Handler) {
 			DirName:         version,
 			Config:          build.NewConfig(version),
 		}); err != nil {
-			log.Info(err.Error())
-			return
+			log.Error(err)
 		}
 	}
 

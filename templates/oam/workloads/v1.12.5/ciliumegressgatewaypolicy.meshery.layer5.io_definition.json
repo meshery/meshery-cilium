@@ -1,0 +1,20 @@
+{
+ "kind": "WorkloadDefinition",
+ "apiVersion": "core.oam.dev/v1alpha1",
+ "metadata": {
+  "name": "CiliumEgressGatewayPolicy",
+  "creationTimestamp": null
+ },
+ "spec": {
+  "definitionRef": {
+   "name": "ciliumegressgatewaypolicy.meshery.layer5.io"
+  },
+  "metadata": {
+   "@type": "pattern.meshery.io/mesh/workload",
+   "k8sAPIVersion": "cilium.io/v2",
+   "k8sKind": "CiliumEgressGatewayPolicy",
+   "meshName": "cilium",
+   "meshVersion": "v1.12.5"
+  }
+ }
+}

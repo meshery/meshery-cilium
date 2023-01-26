@@ -13,7 +13,7 @@
    "@type": "pattern.meshery.io/mesh/workload",
    "k8sAPIVersion": "cilium.io/v2",
    "k8sKind": "CiliumClusterwideNetworkPolicy",
-   "meshName": "CILIUM_SERVICE_MESH",
+   "meshName": "cilium",
    "meshVersion": "v1.13.0-rc1"
   }
  }

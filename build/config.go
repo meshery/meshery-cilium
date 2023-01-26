@@ -12,11 +12,9 @@ import (
 	"github.com/layer5io/meshkit/utils"
 	"github.com/layer5io/meshkit/utils/manifests"
 	walker "github.com/layer5io/meshkit/utils/walker"
-	smp "github.com/layer5io/service-mesh-performance/spec"
 )
 
 var DefaultVersion string
-var DefaultURL string
 var DefaultGenerationMethod string
 var WorkloadPath string
 var MeshModelPath string
@@ -34,7 +32,7 @@ var MeshModelConfig = adapter.MeshModelConfig{ //Move to build/config.go
 // NewConfig creates the configuration for creating components
 func NewConfig(version string) manifests.Config {
 	return manifests.Config{
-		Name:        smp.ServiceMesh_Type_name[int32(smp.ServiceMesh_CILIUM_SERVICE_MESH)],
+		Name:        "CILIUM",
 		MeshVersion: version,
 		CrdFilter: manifests.NewCueCrdFilter(manifests.ExtractorPaths{
 			NamePath:    "spec.names.kind",
@@ -62,6 +60,7 @@ func init() {
 	_ = json.Unmarshal(byt, &Meshmodelmetadata)
 	wd, _ := os.Getwd()
 	WorkloadPath = filepath.Join(wd, "templates", "oam", "workloads")
+	MeshModelPath = filepath.Join(wd, "templates", "meshmodel", "components")
 	AllVersions, _ = utils.GetLatestReleaseTagsSorted("cilium", "cilium")
 	if len(AllVersions) == 0 {
 		return
@@ -84,5 +83,8 @@ func init() {
 	if err != nil {
 		fmt.Println("Could not find CRD names. Will fail component creation...", err.Error())
 	}
-	DefaultURL = "https://raw.githubusercontent.com/cilium/cilium/" + "master" + "/pkg/k8s/apis/cilium.io/client/crds/v2/"
+
+}
+func GetCRDURLForVersion(crd string, version string) string {
+	return fmt.Sprintf("https://raw.githubusercontent.com/cilium/cilium/%s/pkg/k8s/apis/cilium.io/client/crds/v2/%s", version, crd)
 }
