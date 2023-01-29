@@ -83,7 +83,6 @@ func init() {
 	if err != nil {
 		fmt.Println("Could not find CRD names. Will fail component creation...", err.Error())
 	}
-
 }
 func GetCRDURLForVersion(crd string, version string) string {
 	return fmt.Sprintf("https://raw.githubusercontent.com/cilium/cilium/%s/pkg/k8s/apis/cilium.io/client/crds/v2/%s", version, crd)
