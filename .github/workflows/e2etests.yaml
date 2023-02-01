@@ -1,11 +1,16 @@
 name: (E2E Tests) Meshery Adapter for Cilium Tests
 
 on:
+  push:
+    branches:
+      - "*"
+    tags:
+      - "v*"
+    paths-ignore:
+      - 'docs/**'   
   pull_request:
     branches:
       - "*"
-    paths-ignore:
-      - '.github/**'
   release:
     types: [published]
 jobs:
