@@ -1,7 +1,7 @@
 {
 	"kind": "CiliumMesh",
 	"apiVersion": "core.meshmodel.dev/v1alpha1",
-	"display-name": "Cilium Service Mesh",
+	"displayName": "Cilium Service Mesh",
 	"format": "JSON",
 	"metadata": {
 		"logoURL": "https://github.com/cncf/artwork/blob/master/projects/cilium/icon/white/cilium_icon-white.svg?short_path=d2fbc08",
@@ -14,9 +14,9 @@
 	"model": {
 		"name": "cilium",
 		"version": "v1.12.5",
-		"display-name": "CILIUM",
+		"displayName": "CILIUM",
 		"category": "Service Mesh",
-		"sub-category": ""
+		"subCategory": ""
 	},
 	"schema": "{\"properties\":{},\"title\":\"CiliumMesh\",\"type\":\"object\"}"
 }

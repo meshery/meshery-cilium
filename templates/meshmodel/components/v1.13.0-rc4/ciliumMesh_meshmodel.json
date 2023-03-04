@@ -1,7 +1,7 @@
 {
 	"kind": "CiliumMesh",
 	"apiVersion": "core.meshmodel.dev/v1alpha1",
-	"display-name": "Cilium Service Mesh",
+	"displayName": "Cilium Service Mesh",
 	"format": "JSON",
 	"metadata": {
 		"primaryColor":   "#6B91C7",
@@ -14,9 +14,9 @@
 	"model": {
 		"name": "cilium",
 		"version": "v1.13.0-rc4",
-		"display-name": "CILIUM",
+		"displayName": "CILIUM",
 		"category": "Service Mesh",
-		"sub-category": ""
+		"subCategory": ""
 	},
 	"schema": "{\"properties\":{},\"title\":\"CiliumMesh\",\"type\":\"object\"}"
 }
