@@ -4,7 +4,7 @@
 	"display-name": "Cilium Service Mesh",
 	"format": "JSON",
 	"metadata": {
-		"logoUrl": "https://github.com/cncf/artwork/blob/master/projects/cilium/icon/white/cilium_icon-white.svg?short_path=d2fbc08",
+		"logoURL": "https://github.com/cncf/artwork/blob/master/projects/cilium/icon/white/cilium_icon-white.svg?short_path=d2fbc08",
 		"primaryColor": "#6B91C7",
 		"secondaryColor": "#9AB0CF",
 		"shape": "circle",
