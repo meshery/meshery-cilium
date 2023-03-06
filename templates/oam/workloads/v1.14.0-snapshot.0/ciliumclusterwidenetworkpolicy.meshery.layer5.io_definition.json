@@ -1,0 +1,20 @@
+{
+ "kind": "WorkloadDefinition",
+ "apiVersion": "core.oam.dev/v1alpha1",
+ "metadata": {
+  "name": "CiliumClusterwideNetworkPolicy",
+  "creationTimestamp": null
+ },
+ "spec": {
+  "definitionRef": {
+   "name": "ciliumclusterwidenetworkpolicy.meshery.layer5.io"
+  },
+  "metadata": {
+   "@type": "pattern.meshery.io/mesh/workload",
+   "k8sAPIVersion": "cilium.io/v2",
+   "k8sKind": "CiliumClusterwideNetworkPolicy",
+   "meshName": "CILIUM",
+   "meshVersion": "v1.14.0-snapshot.0"
+  }
+ }
+}
