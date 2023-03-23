@@ -15,7 +15,10 @@
 		"name": "cilium",
 		"version": "v1.13.0-rc4",
 		"displayName": "CILIUM",
-		"category": "Service Mesh",
+		"category": {
+			"name": "Service Mesh",
+			"metadata": null
+		},
 		"subCategory": ""
 	},
 	"schema": "{\"properties\":{},\"title\":\"CiliumMesh\",\"type\":\"object\"}"

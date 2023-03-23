@@ -24,9 +24,8 @@ var CRDNames []string
 var Meshmodelmetadata = make(map[string]interface{})
 
 var MeshModelConfig = adapter.MeshModelConfig{ //Move to build/config.go
-	Category:    "Orchestration & Management",
-	SubCategory: "Service Mesh",
-	Metadata:    Meshmodelmetadata,
+	Category: "Orchestration & Management",
+	Metadata: Meshmodelmetadata,
 }
 
 // NewConfig creates the configuration for creating components
@@ -83,7 +82,6 @@ func init() {
 	if err != nil {
 		fmt.Println("Could not find CRD names. Will fail component creation...", err.Error())
 	}
-
 }
 func GetCRDURLForVersion(crd string, version string) string {
 	return fmt.Sprintf("https://raw.githubusercontent.com/cilium/cilium/%s/pkg/k8s/apis/cilium.io/client/crds/v2/%s", version, crd)
