@@ -5,11 +5,11 @@
 	"format": "JSON",
 	"metadata": {},
 	"model": {
-		"name": "cilium",
+		"name": "CILIUM",
 		"version": "v1.12.5",
-		"displayName": "cilium",
+		"displayName": "Cilium",
 		"category": {
-			"name": "Orchestration \u0026 Management",
+			"name": "Cloud Native Network",
 			"metadata": null
 		},
 		"subCategory": "Service Mesh"
