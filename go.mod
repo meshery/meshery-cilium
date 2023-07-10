@@ -12,15 +12,15 @@ replace (
 
 require (
 	github.com/layer5io/meshery-adapter-library v0.6.5
-	github.com/layer5io/meshkit v0.6.45
+	github.com/layer5io/meshkit v0.6.47
 	github.com/layer5io/service-mesh-performance v0.3.4
 	gopkg.in/yaml.v2 v2.4.0
 )
 
 require (
-	cuelang.org/go v0.4.3 // indirect
+	cuelang.org/go v0.5.0 // indirect
 	github.com/chai2010/gettext-go v1.0.2 // indirect
-	github.com/cockroachdb/apd/v2 v2.0.1 // indirect
+	github.com/cockroachdb/apd/v2 v2.0.2 // indirect
 	github.com/emicklei/go-restful/v3 v3.9.0 // indirect
 	github.com/go-gorp/gorp/v3 v3.0.2 // indirect
 	github.com/google/gnostic v0.5.7-v3refs // indirect
@@ -121,7 +121,7 @@ require (
 	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
-	github.com/mitchellh/go-wordwrap v1.0.0 // indirect
+	github.com/mitchellh/go-wordwrap v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/moby/locker v1.0.1 // indirect
