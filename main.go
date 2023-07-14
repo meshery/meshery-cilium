@@ -201,7 +201,6 @@ func registerWorkloads(port string, log logger.Handler) {
 		if err := adapter.CreateComponents(adapter.StaticCompConfig{
 			URL:             crdurl,
 			Method:          gm,
-			OAMPath:         build.WorkloadPath,
 			MeshModelPath:   build.MeshModelPath,
 			MeshModelConfig: build.MeshModelConfig,
 			DirName:         version,
