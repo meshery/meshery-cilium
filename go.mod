@@ -1,12 +1,12 @@
 module github.com/layer5io/meshery-cilium
 
-go 1.19
+go 1.21
 
 replace github.com/kudobuilder/kuttl => github.com/layer5io/kuttl v0.4.1-0.20200723152044-916f10574334
 
 require (
-	github.com/layer5io/meshery-adapter-library v0.6.8
-	github.com/layer5io/meshkit v0.6.48
+	github.com/layer5io/meshery-adapter-library v0.6.9
+	github.com/layer5io/meshkit v0.6.64
 	github.com/layer5io/service-mesh-performance v0.3.4
 	gopkg.in/yaml.v2 v2.4.0
 )
