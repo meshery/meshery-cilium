@@ -152,7 +152,7 @@ func serviceAddress() string {
 func registerCapabilities(port string, log logger.Handler) {
 	// Register workloads
 	log.Info("Registering static workloads...")
-	if err := oam.RegisterWorkloads(mesheryServerAddress(), serviceAddress()+":"+port); err != nil {
+	if err := oam.RegisterMeshModelComponents(instanceID, mesheryServerAddress(), serviceAddress(), port); err != nil {
 		log.Info(err.Error())
 	}
 	log.Info("Registering static workloads completed")
@@ -218,7 +218,7 @@ func registerWorkloads(port string, log logger.Handler) {
 	originalPath := oam.WorkloadPath
 	oam.WorkloadPath = filepath.Join(originalPath, version)
 	defer resetWorkloadPath(originalPath)
-	if err := oam.RegisterWorkloads(mesheryServerAddress(), serviceAddress()+":"+port); err != nil {
+	if err := oam.RegisterMeshModelComponents(instanceID, mesheryServerAddress(), serviceAddress(), port); err != nil {
 		log.Error(err)
 		return
 	}
