@@ -28,6 +28,7 @@ import (
 	"github.com/layer5io/meshkit/errors"
 	"github.com/layer5io/meshkit/logger"
 	"github.com/layer5io/meshkit/models"
+	"github.com/layer5io/meshkit/utils"
 	"github.com/layer5io/meshkit/models/oam/core/v1alpha1"
 	"github.com/layer5io/meshkit/utils/events"
 	"gopkg.in/yaml.v2"
@@ -103,6 +104,7 @@ func (h *Cilium) ApplyOperation(ctx context.Context, opReq adapter.OperationRequ
 	}
 	kubeconfigs := opReq.K8sConfigs
 	operations := make(adapter.Operations)
+	requestedVersion := adapter.Version(opReq.Version)
 	err = h.Config.GetObject(adapter.OperationsKey, &operations)
 	if err != nil {
 		return err
@@ -120,10 +122,20 @@ func (h *Cilium) ApplyOperation(ctx context.Context, opReq adapter.OperationRequ
 	switch opReq.OperationName {
 	case internalconfig.CiliumOperation:
 		go func(hh *Cilium, ee *meshes.EventsResponse) {
-			version := string(operations[opReq.OperationName].Versions[len(operations[opReq.OperationName].Versions)-1])
-			stat, err := hh.installCilium(opReq.IsDeleteOperation, version, opReq.Namespace, kubeconfigs)
+			var err error
+			var stat, version string
+			fmt.Println("dd", operations[opReq.OperationName].Versions)
+			if len(operations[opReq.OperationName].Versions) == 0 {
+				err = ErrFetchIstioVersions
+			} else {
+				version = string(operations[opReq.OperationName].Versions[len(operations[opReq.OperationName].Versions)-1])
+				if utils.Contains[[]adapter.Version, adapter.Version](operations[opReq.OperationName].Versions, requestedVersion) {
+					version = requestedVersion.String()
+				}
+				stat, err = hh.installCilium(opReq.IsDeleteOperation, version, opReq.Namespace, kubeconfigs)
+			}
 			if err != nil {
-				ee.Summary = fmt.Sprintf("Error while %s Cilium service mesh", stat)
+				ee.Summary = fmt.Sprintf("Error while %s Cilium service mesh with version %s", stat, version)
 				ee.Details = err.Error()
 				ee.ErrorCode = errors.GetCode(err)
 				ee.ProbableCause = errors.GetCause(err)
