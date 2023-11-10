@@ -125,7 +125,7 @@ var (
 	// ErrGettingReleaseCode implies error while fetching latest release for cilium cli
 	ErrGettingReleaseCode = "1030"
 
-	ErrFetchIstioVersionsCode = "replace_me"
+	ErrFetchIstioVersionsCode = "1031"
 
 	ErrFetchIstioVersions = errors.New(ErrFetchIstioVersionsCode, errors.Alert, []string{"could not get any cilium versions"}, []string{"versions for cilium could not be fetched"}, []string{"could not reach github.com/cilium/cilium/releases", "no versions could be fetched from cilium release page"}, []string{"make sure adapter is reachable"})
 )

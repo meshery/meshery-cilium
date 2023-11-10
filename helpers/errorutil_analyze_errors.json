@@ -217,6 +217,14 @@
       "path": "cilium/error.go"
     },
     {
+      "name": "ErrFetchIstioVersionsCode",
+      "old_code": "1031",
+      "code": "1031",
+      "code_is_literal": true,
+      "code_is_int": true,
+      "path": "cilium/error.go"
+    },
+    {
       "name": "ErrEmptyConfigCode",
       "old_code": "1021",
       "code": "1021",
@@ -559,6 +567,16 @@
         "code_is_int": true,
         "path": "cilium/error.go"
       }
+    ],
+    "1031": [
+      {
+        "name": "ErrFetchIstioVersionsCode",
+        "old_code": "1031",
+        "code": "1031",
+        "code_is_literal": true,
+        "code_is_int": true,
+        "path": "cilium/error.go"
+      }
     ]
   },
   "call_expr_codes": [],
@@ -639,6 +657,17 @@
         "short_description": "Config is empty",
         "probable_cause": "",
         "suggested_remediation": ""
+      }
+    ],
+    "ErrFetchIstioVersionsCode": [
+      {
+        "name": "ErrFetchIstioVersionsCode",
+        "code": "",
+        "severity": "Alert",
+        "long_description": "versions for cilium could not be fetched",
+        "short_description": "could not get any cilium versions",
+        "probable_cause": "could not reach github.com/cilium/cilium/releases\nno versions could be fetched from cilium release page",
+        "suggested_remediation": "make sure adapter is reachable"
       }
     ],
     "ErrGetLatestReleaseCode": [

@@ -1,7 +1,7 @@
 {
   "min_code": 1000,
-  "max_code": 1030,
-  "next_code": 1031,
+  "max_code": 1031,
+  "next_code": 1032,
   "duplicate_codes": {},
   "duplicate_names": [],
   "call_expr_codes": [],
@@ -36,7 +36,8 @@
     1027,
     1028,
     1029,
-    1030
+    1030,
+    1031
   ],
   "deprecated_new_default": []
 }
