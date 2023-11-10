@@ -31,7 +31,7 @@ var MeshModelConfig = adapter.MeshModelConfig{ //Move to build/config.go
 // NewConfig creates the configuration for creating components
 func NewConfig(version string) manifests.Config {
 	return manifests.Config{
-		Name:        "CILIUM",
+		Name:        "Cilium",
 		MeshVersion: version,
 		CrdFilter: manifests.NewCueCrdFilter(manifests.ExtractorPaths{
 			NamePath:    "spec.names.kind",
@@ -70,8 +70,7 @@ func init() {
 	//Get all the crd names
 	w := walker.NewGithub()
 	err := w.Owner("cilium").
-		Repo("cilium").
-		Branch("master").
+		Repo("cilium"). // Omit the Branch and let GitHub choose the repo's default branch.
 		Root("pkg/k8s/apis/cilium.io/client/crds/v2/**").
 		RegisterFileInterceptor(func(gca walker.GithubContentAPI) error {
 			if gca.Content != "" {
