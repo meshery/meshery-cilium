@@ -217,7 +217,7 @@
       "path": "cilium/error.go"
     },
     {
-      "name": "ErrFetchIstioVersionsCode",
+      "name": "ErrFetchCiliumVersionsCode",
       "old_code": "1031",
       "code": "1031",
       "code_is_literal": true,
@@ -570,7 +570,7 @@
     ],
     "1031": [
       {
-        "name": "ErrFetchIstioVersionsCode",
+        "name": "ErrFetchCiliumVersionsCode",
         "old_code": "1031",
         "code": "1031",
         "code_is_literal": true,
@@ -659,9 +659,9 @@
         "suggested_remediation": ""
       }
     ],
-    "ErrFetchIstioVersionsCode": [
+    "ErrFetchCiliumVersionsCode": [
       {
-        "name": "ErrFetchIstioVersionsCode",
+        "name": "ErrFetchCiliumVersionsCode",
         "code": "",
         "severity": "Alert",
         "long_description": "versions for cilium could not be fetched",
