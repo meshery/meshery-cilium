@@ -126,7 +126,7 @@ func (h *Cilium) ApplyOperation(ctx context.Context, opReq adapter.OperationRequ
 			var stat, version string
 			fmt.Println("dd", operations[opReq.OperationName].Versions)
 			if len(operations[opReq.OperationName].Versions) == 0 {
-				err = ErrFetchIstioVersions
+				err = ErrFetchCiliumVersions
 			} else {
 				version = string(operations[opReq.OperationName].Versions[len(operations[opReq.OperationName].Versions)-1])
 				if utils.Contains[[]adapter.Version, adapter.Version](operations[opReq.OperationName].Versions, requestedVersion) {
