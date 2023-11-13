@@ -12,6 +12,7 @@ import (
 	"github.com/layer5io/meshkit/utils"
 	"github.com/layer5io/meshkit/utils/manifests"
 	walker "github.com/layer5io/meshkit/utils/walker"
+	smp "github.com/layer5io/service-mesh-performance/spec"
 )
 
 var DefaultVersion string
@@ -31,7 +32,7 @@ var MeshModelConfig = adapter.MeshModelConfig{ //Move to build/config.go
 // NewConfig creates the configuration for creating components
 func NewConfig(version string) manifests.Config {
 	return manifests.Config{
-		Name:        "Cilium",
+		Name:        smp.ServiceMesh_CILIUM_SERVICE_MESH.Enum().String(),
 		MeshVersion: version,
 		CrdFilter: manifests.NewCueCrdFilter(manifests.ExtractorPaths{
 			NamePath:    "spec.names.kind",
