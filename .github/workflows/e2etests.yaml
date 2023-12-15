@@ -16,7 +16,7 @@ jobs:
       adapter_version:  ${{ env.version }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@master
+        uses: actions/checkout@4
       - name: Get version of adapter
         run: |
             if [ ${{ github.event_name }} == "release" ];then
@@ -34,7 +34,7 @@ jobs:
            yq e -i '.services.cilium.version="${{ steps.glrt.outputs.release }}"' ./.github/install/deploy.yaml 
            cat ./.github/install/deploy.yaml
       - name: Uploading file
-        uses: actions/upload-artifact@v3.0.0
+        uses: actions/upload-artifact@v4
         with:
           name: patternfile
           path: ./.github/install/deploy.yaml 
@@ -51,7 +51,7 @@ jobs:
       adapter_name: cilium
       patternfile_name: deploy.yaml
       provider: Local
-      k8s_version: v1.20.1
+      k8s_version: v1.29.0
       sm_version: ${{ needs.SetPatternfile.outputs.sm_version }}
       adapter_version:  ${{ needs.SetPatternfile.outputs.adapter_version }}
       output_filename: data.json
