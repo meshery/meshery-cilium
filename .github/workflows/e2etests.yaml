@@ -16,7 +16,7 @@ jobs:
       adapter_version:  ${{ env.version }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
       - name: Get version of adapter
         run: |
             if [ ${{ github.event_name }} == "release" ];then
