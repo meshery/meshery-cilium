@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: 1.23
       - uses: actions/checkout@master
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v3
@@ -42,7 +42,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: 1.23
       - run: GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go install github.com/kisielk/errcheck@latest; /home/runner/go/bin/errcheck -tags draft ./...
   error_code_check:
     name: Error code utility check
@@ -55,7 +55,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: 1.23
       - run: |
             errWillHave="level=error"
             GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go install github.com/layer5io/meshkit/cmd/errorutil;
@@ -77,7 +77,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: 1.23
       - uses: dominikh/staticcheck-action@v1.2.0
         with:
           install-go: false
@@ -93,7 +93,7 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v4
         with:
-          go-version: 1.21
+          go-version: 1.23
       - run: GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go vet -tags draft ./...
   sec_check:
     name: Security check
@@ -123,7 +123,7 @@ jobs:
      - name: Setup Go
        uses: actions/setup-go@v4
        with:
-        go-version: 1.21
+        go-version: 1.23
      - name: Create cluster using KinD
        uses: engineerd/setup-kind@v0.5.0
        with:
