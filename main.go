@@ -120,9 +120,10 @@ func main() {
 	}
 }
 
-func isDebug() bool {
-	return os.Getenv("DEBUG") == "true"
-}
+// unused function
+//func isDebug() bool {
+//	return os.Getenv("DEBUG") == "true"
+//}
 
 func mesheryServerAddress() string {
 	meshReg := os.Getenv("MESHERY_SERVER")
