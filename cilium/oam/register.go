@@ -15,7 +15,7 @@ var (
 	//WorkloadPath will be used by both static and component generation
 	WorkloadPath        = filepath.Join(basePath, "templates", "oam", "workloads")
 	MeshmodelComponents = filepath.Join(basePath, "templates", "meshmodel", "components")
-	traitPath           = filepath.Join(basePath, "templates", "oam", "traits")
+//	traitPath           = filepath.Join(basePath, "templates", "oam", "traits") <= unused variable
 	basePath, _         = os.Getwd()
 )
 
@@ -23,11 +23,14 @@ var (
 var AvailableVersions = map[string]bool{}
 var availableVersionGlobalMutex sync.Mutex
 
+// unused type
+/*
 type schemaDefinitionPathSet struct {
 	oamDefinitionPath string
 	jsonSchemaPath    string
 	name              string
 }
+*/
 
 type meshmodelDefinitionPathSet struct {
 	meshmodelDefinitionPath string
