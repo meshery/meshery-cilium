@@ -28,8 +28,8 @@ import (
 	"github.com/layer5io/meshkit/errors"
 	"github.com/layer5io/meshkit/logger"
 	"github.com/layer5io/meshkit/models"
-	"github.com/layer5io/meshkit/utils"
 	"github.com/layer5io/meshkit/models/oam/core/v1alpha1"
+	"github.com/layer5io/meshkit/utils"
 	"github.com/layer5io/meshkit/utils/events"
 	"gopkg.in/yaml.v2"
 )
