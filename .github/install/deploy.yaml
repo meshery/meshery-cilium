@@ -1,4 +1,4 @@
-id: 00000000-0000-0000-0000-000000000000
+id: 1ce6fa20-9ac2-4a86-baec-7c8687ba0c4b
 components:
 - capabilities: null
   component:
@@ -7,9 +7,9 @@ components:
     version: cilium.io/v2
   configuration: {}
   description: ""
-  displayName: cilium-clusterwide-envoy-config-ht
+  displayName: cilium-clusterwide-envoy-config-bu
   format: JSON
-  id: ef222a02-b616-4238-985a-ec69e997af0f
+  id: 2b3bedb9-338f-453e-be9c-908f9f64566d
   metadata:
     genealogy: ""
     isAnnotation: false
@@ -36,7 +36,7 @@ components:
       version: v1.17.0-pre.3
     name: cilium
     registrant:
-      created_at: 2025-01-09T18:36:10.042515101Z
+      created_at: 2025-01-12T20:30:18.922439-05:00
       credential_id: 00000000-0000-0000-0000-000000000000
       deleted_at: 0001-01-01T00:00:00Z
       id: 9e04779c-94b6-6a03-575c-66f4c57541eb
@@ -45,7 +45,7 @@ components:
       status: registered
       sub_type: ""
       type: registry
-      updated_at: 2025-01-09T18:36:10.042515101Z
+      updated_at: 2025-01-12T20:30:18.922439-05:00
       user_id: 00000000-0000-0000-0000-000000000000
     connection_id: 9e04779c-94b6-6a03-575c-66f4c57541eb
     schemaVersion: models.meshery.io/v1beta1
@@ -71,8 +71,8 @@ components:
     opacity: 1
     padding: 6
     position:
-      x: 569.2070680759763
-      "y": 554.760529848318
+      x: 695.2517318725586
+      "y": 476.0173568725586
     primaryColor: '#6B91C7'
     secondaryColor: '#9AB0CF'
     shape: circle
@@ -81,7 +81,7 @@ components:
     width: 24
     z-index: 0
   version: v1.0.0
-name: Untitled Design
+name: pattern file
 relationships: []
 schemaVersion: designs.meshery.io/v1beta1
-version: 0.0.1
+version: 0.0.5
