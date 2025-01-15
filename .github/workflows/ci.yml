@@ -11,7 +11,7 @@ on:
 jobs:
   lint:
     name: Check & Review code
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/setup-go@v5
         with:
@@ -33,7 +33,7 @@ jobs:
           # only-new-issues: true
   error_check:
     name: Error check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@master
@@ -46,7 +46,7 @@ jobs:
       - run: GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go install github.com/kisielk/errcheck@latest; /home/runner/go/bin/errcheck -tags draft ./...
   error_code_check:
     name: Error code utility check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@master
@@ -68,7 +68,7 @@ jobs:
             fi
   static_check:
     name: Static check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@master
@@ -84,7 +84,7 @@ jobs:
           install-go: false
   vet:
     name: Vet
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Check out code
         uses: actions/checkout@master
@@ -97,7 +97,7 @@ jobs:
       - run: GOPROXY=https://proxy.golang.org,direct GOSUMDB=off GO111MODULE=on go vet -tags draft ./...
   sec_check:
     name: Security check
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     env:
       GO111MODULE: on
     steps:
@@ -112,7 +112,7 @@ jobs:
   tests:
     #  needs: [lint, error_check, static_check, vet, sec_check]
      name: Tests
-     runs-on: ubuntu-latest
+     runs-on: ubuntu-24.04
      env:
        ACTIONS_ALLOW_UNSECURE_COMMANDS: true
      steps:
