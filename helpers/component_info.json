@@ -1,5 +1,5 @@
 {
-  "name": "CILIUM",
+  "name": "meshery-cilium",
   "type": "adapter",
   "next_error_code": 1032
 }
