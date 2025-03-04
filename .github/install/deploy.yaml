@@ -1,7 +1,87 @@
-name: CiliumMesh
-services:
-  cilium:
-    type: CiliumMesh
-    namespace: kube-system
-    version: #will be filled dynamically in workflow
-      
+id: 1ce6fa20-9ac2-4a86-baec-7c8687ba0c4b
+components:
+- capabilities: null
+  component:
+    kind: CiliumClusterwideEnvoyConfig
+    schema: ""
+    version: cilium.io/v2
+  configuration: {}
+  description: ""
+  displayName: cilium-clusterwide-envoy-config-bu
+  format: JSON
+  id: 2b3bedb9-338f-453e-be9c-908f9f64566d
+  metadata:
+    genealogy: ""
+    isAnnotation: false
+    isNamespaced: false
+    published: false
+    instanceDetails: null
+    additionalproperties:
+      source_uri: git://github.com/cilium/cilium/main/pkg/k8s/apis/cilium.io/client/crds/v2
+  model:
+    category:
+      id: 00000000-0000-0000-0000-000000000000
+      name: Cloud Native Network
+    displayName: Cilium
+    id: 263233f3-4129-ee74-fa6d-a253c2fd6f22
+    metadata:
+      capabilities: null
+      isAnnotation: false
+      primaryColor: '#6B91C7'
+      secondaryColor: '#9AB0CF'
+      svgColor: ui/public/static/img/meshmodels/cilium/color/cilium-color.svg
+      svgComplete: ""
+      svgWhite: ui/public/static/img/meshmodels/cilium/white/cilium-white.svg
+    model:
+      version: v1.17.0-pre.3
+    name: cilium
+    registrant:
+      created_at: 2025-01-12T20:30:18.922439-05:00
+      credential_id: 00000000-0000-0000-0000-000000000000
+      deleted_at: 0001-01-01T00:00:00Z
+      id: 9e04779c-94b6-6a03-575c-66f4c57541eb
+      kind: github
+      name: Github
+      status: registered
+      sub_type: ""
+      type: registry
+      updated_at: 2025-01-12T20:30:18.922439-05:00
+      user_id: 00000000-0000-0000-0000-000000000000
+    connection_id: 9e04779c-94b6-6a03-575c-66f4c57541eb
+    schemaVersion: models.meshery.io/v1beta1
+    status: enabled
+    subCategory: Service Mesh
+    version: v1.0.0
+    components: null
+    relationships: null
+    components_count: 0
+    relationships_count: 0
+  schemaVersion: components.meshery.io/v1beta1
+  status: enabled
+  styles:
+    background-opacity: 1
+    body-text: ""
+    body-text-color: '#808080'
+    body-text-font-size: 12
+    body-text-font-weight: "400"
+    body-text-horizontal-align: center
+    body-text-vertical-align: center
+    border-width: 0
+    height: 24
+    opacity: 1
+    padding: 6
+    position:
+      x: 695.2517318725586
+      "y": 476.0173568725586
+    primaryColor: '#6B91C7'
+    secondaryColor: '#9AB0CF'
+    shape: circle
+    svgColor: ui/public/static/img/meshmodels/cilium/color/ciliumclusterwideenvoyconfig-color.svg
+    svgWhite: ui/public/static/img/meshmodels/cilium/white/ciliumclusterwideenvoyconfig-white.svg
+    width: 24
+    z-index: 0
+  version: v1.0.0
+name: pattern file
+relationships: []
+schemaVersion: designs.meshery.io/v1beta1
+version: 0.0.5
